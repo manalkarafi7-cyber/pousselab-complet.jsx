@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PousseLab — Cultivez vos légumes maison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#F7F3EC;--cream2:#F0EBE0;--beige:#EAE0CC;--beige2:#C8B898;
+  --green:#2E5C26;--green2:#1E4018;--green3:#A8E090;--green4:rgba(46,92,38,.08);
+  --brown:#1E1208;--brown2:#5C4030;--brown3:#3A2010;
+  --orange:#B84E1E;--orange2:#8A3810;--orange3:#FFD4A8;
+  --gold:#D4850A;--white:#FDFAF5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--brown);-webkit-font-smoothing:antialiased}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:400;background:rgba(247,243,236,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--beige);display:flex;align-items:center;justify-content:space-between;padding:10px 28px;gap:8px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--green);cursor:pointer;flex-shrink:0;text-decoration:none}
+.nav-logo em{color:var(--orange);font-style:italic}
+.nav-links{display:flex;gap:2px;flex-wrap:wrap}
+.nl{background:none;border:none;padding:6px 10px;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:500;color:var(--brown);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.nl:hover{background:var(--beige);color:var(--green);font-weight:600}
+.nav-r{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.btn-g{background:var(--green);color:#fff;border:none;padding:7px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-g:hover{background:var(--green2)}
+.btn-t{background:var(--orange);color:#fff;border:none;padding:7px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-t:hover{background:var(--orange2)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:110px 60px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:0;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(46,92,38,.09),transparent 65%);pointer-events:none}
+.h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5.5vw,66px);line-height:1.03;color:var(--brown);letter-spacing:-.5px;margin-bottom:14px}
+.h1 em{color:var(--green);font-style:italic}
+.hero-sub{font-size:15px;color:var(--brown2);line-height:1.8;max-width:420px;margin-bottom:22px}
+.proof-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.av-stack{display:flex}
+.av{width:26px;height:26px;border-radius:50%;border:2px solid var(--white);background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:13px;margin-left:-6px}
+.av:first-child{margin-left:0}
+.proof-txt{font-size:12px;font-weight:600;color:var(--brown)}
+.proof-txt strong{color:var(--green)}
+.stars{color:var(--gold);font-size:11px}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-p{background:var(--green);color:#fff;border:none;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .22s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-p:hover{background:var(--green2);transform:translateY(-1px);box-shadow:0 8px 22px rgba(46,92,38,.22)}
+.btn-s{background:transparent;color:var(--brown);border:1.5px solid var(--beige2);padding:12px 22px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-s:hover{border-color:var(--green);color:var(--green)}
+.hcard{width:100%;max-width:310px;background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 18px 52px rgba(30,18,8,.12);border:1.5px solid var(--beige2);justify-self:end}
+.hcard-img{height:190px;background:linear-gradient(160deg,#C8E8C0,#7AAA68 50%,#4A7A40);display:flex;align-items:center;justify-content:center;font-size:72px}
+.hcard-body{padding:16px 18px 20px}
+.hcard-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--orange);background:#F5E8D8;padding:3px 9px;border-radius:100px;display:inline-block;margin-bottom:8px}
+.hcard-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--brown);margin-bottom:10px}
+.hcard-btn{width:100%;background:var(--green);color:#fff;border:none;padding:10px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.hcard-btn:hover{background:var(--green2)}
+
+/* ── TBAR ── */
+.tbar{background:var(--brown);display:flex;overflow:hidden;flex-wrap:wrap}
+.tbc{flex:1;min-width:100px;padding:20px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.07)}
+.tbc:last-child{border:none}
+.tbc-n{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--green3);display:block;line-height:1}
+.tbc-l{font-size:10px;color:rgba(255,255,255,.4);margin-top:4px}
+
+/* ── SECTIONS ── */
+.section{padding:72px 60px}
+.max{max-width:1060px;margin:0 auto}
+.ctr{text-align:center}
+.eyebrow{display:inline-block;background:var(--beige);border:1.5px solid var(--beige2);padding:4px 12px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.eyebrow.g{background:var(--green4);border-color:rgba(46,92,38,.15);color:var(--green)}
+.eyebrow.inv{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:var(--green3)}
+.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,46px);font-weight:700;color:var(--brown);line-height:1.1}
+.h2 em{color:var(--green);font-style:italic}
+.h2.inv{color:#fff}
+.h2.inv em{color:var(--green3)}
+.lead{font-size:15px;color:var(--brown2);max-width:540px;line-height:1.8;margin-top:10px}
+.lead.inv{color:rgba(255,255,255,.55)}
+.ctr .lead{margin:10px auto 0}
+
+/* ── FORMATIONS ── */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;margin-top:36px}
+.fcard{border-radius:18px;overflow:hidden;box-shadow:0 8px 28px rgba(30,18,8,.1);cursor:pointer;transition:transform .22s,box-shadow .22s}
+.fcard:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(30,18,8,.16)}
+.fcard-top{padding:24px 22px 18px;color:#fff}
+.fcard-badge{display:inline-block;background:rgba(255,255,255,.15);padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;margin-bottom:10px}
+.fcard-emoji{font-size:38px;margin-bottom:8px;display:block}
+.fcard-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:6px}
+.fcard-tag{font-size:11px;opacity:.75;margin-bottom:10px}
+.fcard-price{font-size:22px;font-weight:800}
+.fcard-old{font-size:13px;text-decoration:line-through;opacity:.5;margin-left:6px}
+.fcard-bottom{background:var(--white);padding:16px 22px}
+.fcard-desc{font-size:12.5px;color:var(--brown2);line-height:1.7;margin-bottom:12px}
+.fcard-meta{display:flex;gap:12px;font-size:11px;color:var(--brown2);margin-bottom:12px;flex-wrap:wrap}
+.fcard-btn{width:100%;background:var(--green);color:#fff;border:none;padding:10px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.fcard-btn:hover{background:var(--green2)}
+
+/* ── ENGRAIS ── */
+.eng-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:32px}
+.ecard{border-radius:16px;overflow:hidden;border:1.5px solid var(--beige);background:var(--white);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.ecard:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(30,18,8,.1)}
+.ecard-top{padding:18px 20px 14px}
+.ecard-em{font-size:32px;margin-bottom:8px;display:block}
+.ecard-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-radius:100px;padding:3px 9px;display:inline-block;margin-bottom:6px;color:#fff}
+.ecard-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--brown);margin-bottom:4px}
+.ecard-diff{font-size:11px;color:var(--brown2)}
+.ecard-recipe{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.ecard-recipe.open{max-height:600px;padding:14px 20px 18px}
+.ecard-toggle{width:100%;background:none;border:none;border-top:1.5px solid var(--beige);padding:10px 20px;font-size:12px;font-weight:700;cursor:pointer;text-align:left;color:var(--green);font-family:'Plus Jakarta Sans',sans-serif;display:flex;justify-content:space-between;align-items:center}
+
+/* ── GUIDE / VEG ── */
+.guide-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;margin-bottom:28px}
+.gf{background:var(--beige);border:none;padding:7px 14px;border-radius:100px;font-size:12px;font-weight:600;color:var(--brown2);cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.gf:hover,.gf.on{background:var(--green);color:#fff}
+.veg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.vcard{background:var(--white);border-radius:14px;padding:16px;border:1.5px solid var(--beige);cursor:pointer;transition:all .2s}
+.vcard:hover{border-color:#5A9450;box-shadow:0 6px 18px rgba(46,92,38,.1)}
+.vcard-em{font-size:28px;margin-bottom:6px;display:block}
+.vcard-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:var(--brown);margin-bottom:4px}
+.vcard-cat{font-size:10px;color:var(--orange);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.vcard-detail{font-size:11px;color:var(--brown2);margin-top:2px}
+
+/* ── SAISONNIER ── */
+.saison-tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
+.stab{background:var(--beige);border:none;padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;color:var(--brown2)}
+.stab.on{color:#fff}
+.saison-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.scard{background:var(--white);border-radius:12px;padding:14px;border:1.5px solid var(--beige)}
+.scard-veg{font-size:22px;margin-bottom:4px}
+.scard-name{font-size:13px;font-weight:700;color:var(--brown);margin-bottom:4px}
+.scard-act{font-size:11px;font-weight:700;border-radius:100px;padding:2px 8px;display:inline-block}
+.scard-tip{font-size:11px;color:var(--brown2);margin-top:6px;line-height:1.5}
+
+/* ── INFOGRAPHIE ── */
+.infog-tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.itab{background:var(--beige);border:none;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;color:var(--brown2)}
+.itab.on{background:var(--green);color:#fff}
+.infog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.icard{background:var(--white);border-radius:16px;overflow:hidden;border:1.5px solid var(--beige)}
+.icard-top{padding:18px;display:flex;align-items:flex-start;gap:14px}
+.icard-vis{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.icard-shape{border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff}
+.icard-dim{font-size:9px;color:var(--brown2);text-align:center;line-height:1.4}
+.icard-info{flex:1}
+.icard-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:var(--brown);margin-bottom:6px}
+.icard-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.itag{font-size:10px;font-weight:600;background:var(--beige);padding:2px 8px;border-radius:100px;color:var(--brown2)}
+.icard-vol{font-size:11px;color:var(--brown2)}
+.icard-vegs{border-top:1px solid var(--beige);padding:10px 18px;display:flex;flex-wrap:wrap;gap:6px}
+
+/* ── BLOG ── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px;margin-top:32px}
+.bcard{background:var(--white);border-radius:16px;overflow:hidden;border:1.5px solid var(--beige);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.bcard:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(30,18,8,.1)}
+.bcard-img{height:160px;object-fit:cover;width:100%;display:block;background:var(--beige)}
+.bcard-body{padding:16px 18px 20px}
+.bcard-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--orange);margin-bottom:6px}
+.bcard-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--brown);margin-bottom:8px;line-height:1.3}
+.bcard-exc{font-size:12.5px;color:var(--brown2);line-height:1.65;margin-bottom:12px}
+.bcard-foot{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--brown2)}
+
+/* ── TÉMOIGNAGES ── */
+.temo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:32px}
+.tcard{background:rgba(255,255,255,.05);border-radius:16px;padding:20px;border:1.5px solid rgba(255,255,255,.1)}
+.tcard-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.tcard-av{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.tcard-name{font-weight:700;font-size:13px;color:#fff}
+.tcard-city{font-size:11px;color:rgba(255,255,255,.5)}
+.tcard-stars{color:var(--gold);font-size:12px;margin-bottom:10px}
+.tcard-txt{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:10px;font-style:italic}
+.tcard-det{font-size:10px;font-weight:600;color:var(--green3);background:rgba(168,224,144,.1);padding:3px 9px;border-radius:100px;display:inline-block}
+
+/* ── FAQ ── */
+.faq-list{max-width:700px;margin:32px auto 0}
+.faq-cat{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--brown);margin-bottom:12px;margin-top:28px}
+.faq-item{border-bottom:1px solid var(--beige)}
+.faq-q{width:100%;background:none;border:none;padding:14px 0;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:var(--brown);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-a{font-size:13.5px;color:var(--brown2);line-height:1.75;padding-bottom:14px;display:none}
+.faq-a.open{display:block}
+
+/* ── MATÉRIEL ── */
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px;margin-top:32px}
+.mcat{background:var(--white);border-radius:16px;padding:22px;border:1.5px solid var(--beige)}
+.mcat-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.mcat-icon{font-size:24px}
+.mcat-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--brown)}
+.mitem{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--beige)}
+.mitem:last-child{border:none}
+.mitem-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.mitem-t{font-size:13px;font-weight:600;color:var(--brown)}
+.mitem-d{font-size:11.5px;color:var(--brown2);margin-top:2px}
+
+/* ── PACK ── */
+.pack-box{background:linear-gradient(135deg,var(--brown),var(--green));border-radius:24px;padding:48px;text-align:center;margin-top:40px}
+.pack-box h3{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.5vw,40px);font-weight:700;color:#fff;margin-bottom:12px}
+.pack-box h3 em{color:var(--green3);font-style:italic}
+.pack-box p{font-size:14px;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto 24px;line-height:1.8}
+.pack-price{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--green3);margin-bottom:6px}
+.pack-old{font-size:18px;color:rgba(255,255,255,.4);text-decoration:line-through;margin-bottom:24px}
+.pack-btn{background:var(--green3);color:var(--brown);border:none;padding:14px 32px;border-radius:100px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s}
+.pack-btn:hover{background:#fff;transform:translateY(-2px)}
+
+/* ── DASHBOARD ── */
+.dash-layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 60px);margin-top:60px}
+.dash-sidebar{background:var(--brown);padding:24px 0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
+.dash-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--green3);padding:0 22px 22px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:14px}
+.dash-logo em{color:var(--orange3);font-style:italic}
+.dash-nav-item{display:flex;align-items:center;gap:10px;padding:10px 22px;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.dash-nav-item:hover{background:rgba(255,255,255,.05);color:#fff}
+.dash-nav-item.active{background:rgba(46,92,38,.2);color:var(--green3);border-left-color:var(--green3);font-weight:700}
+.dash-nav-icon{font-size:16px;flex-shrink:0}
+.dash-nav-section{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:16px 22px 6px}
+.dash-content{padding:32px;background:var(--cream)}
+.dash-header{margin-bottom:28px}
+.dash-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--brown);margin-bottom:4px}
+.dash-sub{font-size:14px;color:var(--brown2)}
+.dash-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:28px}
+.dstat{background:var(--white);border-radius:14px;padding:16px 20px;border:1.5px solid var(--beige)}
+.dstat-val{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--green);line-height:1}
+.dstat-lbl{font-size:11px;color:var(--brown2);margin-top:4px}
+.course-list{display:grid;gap:16px}
+.citem{background:var(--white);border-radius:14px;padding:18px 20px;border:1.5px solid var(--beige);display:flex;align-items:center;gap:16px}
+.citem-emoji{font-size:28px;flex-shrink:0}
+.citem-info{flex:1}
+.citem-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--brown);margin-bottom:4px}
+.citem-prog{font-size:11px;color:var(--brown2);margin-bottom:8px}
+.prog-bar{height:6px;background:var(--beige);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;background:var(--green);border-radius:100px;transition:width .3s}
+.citem-btn{background:var(--green);color:#fff;border:none;padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap}
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:16px}
+.badge{background:var(--white);border-radius:12px;padding:14px;border:1.5px solid var(--beige);text-align:center}
+.badge.earned{border-color:var(--gold);background:#FFFBF0}
+.badge-icon{font-size:26px;margin-bottom:6px}
+.badge-name{font-size:11px;font-weight:700;color:var(--brown);margin-bottom:2px}
+.badge-desc{font-size:10px;color:var(--brown2)}
+.activity-list{display:grid;gap:10px}
+.act-item{background:var(--white);border-radius:12px;padding:14px 18px;border:1.5px solid var(--beige);display:flex;align-items:center;gap:12px}
+.act-avatar{width:36px;height:36px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.act-text{font-size:13px;color:var(--brown);line-height:1.5}
+.act-text strong{color:var(--green)}
+.act-time{font-size:10px;color:var(--brown2);white-space:nowrap}
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.res-item{background:var(--white);border-radius:12px;padding:16px;border:1.5px solid var(--beige);text-align:center}
+.res-icon{font-size:28px;margin-bottom:8px}
+.res-name{font-size:13px;font-weight:700;color:var(--brown);margin-bottom:4px}
+.res-size{font-size:11px;color:var(--brown2);margin-bottom:10px}
+.res-btn{background:var(--green4);color:var(--green);border:1.5px solid rgba(46,92,38,.2);padding:7px 16px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;width:100%}
+.res-btn:hover{background:var(--green);color:#fff}
+
+/* ── RÉGIONS ── */
+.reg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:28px}
+.rcard{border-radius:16px;overflow:hidden;border:1.5px solid var(--beige);background:var(--white);cursor:pointer;transition:all .2s}
+.rcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(30,18,8,.1)}
+.rcard-top{padding:18px 20px 14px}
+.rcard-em{font-size:28px;margin-bottom:6px;display:block}
+.rcard-label{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:var(--brown);margin-bottom:4px}
+.rcard-cl{font-size:11px;color:var(--brown2);line-height:1.6}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(30,18,8,.6);z-index:900;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:20px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 32px 80px rgba(30,18,8,.25)}
+.modal-head{padding:24px 28px 16px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--beige);position:sticky;top:0;background:var(--white);z-index:1;border-radius:20px 20px 0 0}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--brown2)}
+.modal-body{padding:24px 28px}
+
+/* ── CHECKOUT ── */
+.checkout-box{max-width:520px;margin:0 auto;background:var(--white);border-radius:20px;padding:32px;border:1.5px solid var(--beige);box-shadow:0 16px 48px rgba(30,18,8,.1)}
+.form-field{margin-bottom:16px}
+.form-field label{display:block;font-size:12px;font-weight:700;margin-bottom:5px;color:var(--brown)}
+.form-field input{width:100%;border:1.5px solid var(--beige);border-radius:9px;padding:10px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:#fff;color:var(--brown);transition:border-color .2s}
+.form-field input:focus{border-color:var(--green)}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pay-btn{width:100%;background:var(--green);color:#fff;border:none;padding:15px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;margin-top:8px;transition:all .2s}
+.pay-btn:hover{background:var(--green2)}
+.pay-security{text-align:center;font-size:11px;color:var(--brown2);margin-top:12px}
+
+/* ── CHATBOT ── */
+.chat-btn{position:fixed;bottom:24px;right:24px;z-index:800;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 8px 24px rgba(46,92,38,.35);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.chat-btn:hover{background:var(--green2);transform:scale(1.07)}
+.chat-win{position:fixed;bottom:90px;right:24px;z-index:800;width:340px;background:var(--white);border-radius:18px;box-shadow:0 20px 60px rgba(30,18,8,.2);overflow:hidden;display:none;border:1.5px solid var(--beige)}
+.chat-win.open{display:flex;flex-direction:column}
+.chat-top{background:var(--green);padding:14px 18px;display:flex;align-items:center;gap:10px}
+.chat-top-name{font-size:13px;font-weight:700;color:#fff}
+.chat-top-sub{font-size:10px;color:rgba(255,255,255,.6)}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px;max-height:300px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:12.5px;line-height:1.6}
+.msg.bot{background:var(--beige);color:var(--brown);align-self:flex-start;border-bottom-left-radius:3px}
+.msg.usr{background:var(--green);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.chat-typing{display:flex;gap:4px;align-items:center;padding:9px 13px;background:var(--beige);border-radius:12px;align-self:flex-start;width:60px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--brown2);animation:bounce .8s infinite}
+.dot:nth-child(2){animation-delay:.15s}
+.dot:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,80%,100%{transform:scale(.8);opacity:.5}40%{transform:scale(1);opacity:1}}
+.chat-form{border-top:1px solid var(--beige);padding:10px;display:flex;gap:8px}
+.chat-in{flex:1;border:1.5px solid var(--beige);border-radius:9px;padding:8px 12px;font-size:12.5px;font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:var(--brown);outline:none}
+.chat-in:focus{border-color:var(--green)}
+.chat-send{background:var(--green);color:#fff;border:none;padding:8px 13px;border-radius:9px;font-size:12.5px;font-weight:700;cursor:pointer}
+
+/* ── FOOTER ── */
+footer{background:var(--brown);color:rgba(255,255,255,.6);padding:48px 60px 32px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--green3);margin-bottom:10px}
+.foot-logo em{color:var(--orange3);font-style:italic}
+.foot-desc{font-size:12px;line-height:1.8;max-width:220px;color:rgba(255,255,255,.4)}
+.foot-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6);margin-bottom:12px}
+.foot-link{display:block;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:8px;cursor:pointer;transition:color .2s;text-decoration:none;background:none;border:none;font-family:'Plus Jakarta Sans',sans-serif;text-align:left}
+.foot-link:hover{color:var(--green3)}
+.foot-bar{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-bar span{font-size:11px;color:rgba(255,255,255,.3)}
+
+/* ── PAGES SIMPLES ── */
+.page-hero{padding:100px 60px 48px;max-width:1060px;margin:0 auto}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--brown);margin-bottom:12px}
+.page-hero h1 em{color:var(--green);font-style:italic}
+.page-hero p{font-size:15px;color:var(--brown2);max-width:600px;line-height:1.8}
+.prose{font-size:14px;color:var(--brown2);line-height:1.85;max-width:720px}
+.prose h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--brown);margin:28px 0 12px}
+.prose p{margin-bottom:14px}
+.prose ul{padding-left:20px;margin-bottom:14px}
+.prose ul li{margin-bottom:6px}
+.contact-form{max-width:520px;margin-top:32px}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--brown);color:#fff;padding:12px 24px;border-radius:100px;font-size:13px;font-weight:600;z-index:1000;opacity:0;transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .dash-layout{grid-template-columns:1fr}
+  .dash-sidebar{position:static;height:auto;display:flex;flex-wrap:wrap;gap:0;padding:12px}
+  .dash-nav-section{display:none}
+  .dash-nav-item{padding:8px 12px;font-size:12px;border-left:none;border-bottom:2px solid transparent}
+  .dash-nav-item.active{border-bottom-color:var(--green3);border-left:none}
+}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding:90px 24px 40px;gap:28px}
+  .hcard{max-width:100%;justify-self:center}
+  .section{padding:48px 24px}
+  footer{padding:36px 24px 24px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .page-hero{padding:90px 24px 36px}
+  .nav-links{display:none}
+  .dash-content{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#" onclick="showPage('home');return false">Pousse<em>Lab</em></a>
+  <div class="nav-links">
+    <a class="nl" href="#" onclick="showPage('formations');return false">Formations</a>
+    <a class="nl" href="#" onclick="showPage('engrais');return false">Engrais</a>
+    <a class="nl" href="#" onclick="showPage('guide');return false">Guide</a>
+    <a class="nl" href="#" onclick="showPage('blog');return false">Blog</a>
+    <a class="nl" href="#" onclick="showPage('faq');return false">FAQ</a>
+    <a class="nl" href="#" onclick="showPage('materiel');return false">Matériel</a>
+  </div>
+  <div class="nav-r">
+    <button class="btn-t" onclick="openModal('m-pack')">🌿 Pack Complet</button>
+    <button class="btn-g" onclick="showPage('dashboard')">Espace membre</button>
+  </div>
+</nav>
+
+<!-- PAGES CONTAINER -->
+<div id="app"></div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="m-form" onclick="if(event.target===this)closeModal('m-form')">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="m-form-title" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700"></h3>
+      <button class="modal-close" onclick="closeModal('m-form')">✕</button>
+    </div>
+    <div class="modal-body" id="m-form-body"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-pack" onclick="if(event.target===this)closeModal('m-pack')">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700">🌿 Pack PousseLab Complet</h3>
+      <button class="modal-close" onclick="closeModal('m-pack')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:14px;color:#5C4030;line-height:1.8;margin-bottom:16px">Les <strong>5 formations</strong> + tous les guides PDF + accès au groupe privé + toutes les mises à jour futures.</p>
+      <ul style="list-style:none;margin-bottom:20px">
+        <li style="padding:6px 0;font-size:13.5px;color:#5C4030">✅ Balcon &amp; Appartement (89€)</li>
+        <li style="padding:6px 0;font-size:13.5px;color:#5C4030">✅ Terrasse Productive (119€)</li>
+        <li style="padding:6px 0;font-size:13.5px;color:#5C4030">✅ Jardin en Famille (79€)</li>
+        <li style="padding:6px 0;font-size:13.5px;color:#5C4030">✅ Intérieur &amp; Lumière (69€)</li>
+        <li style="padding:6px 0;font-size:13.5px;color:#5C4030">✅ Hydroponie Maison (99€)</li>
+        <li style="padding:6px 0;font-size:13.5px;color:#5C4030">✅ Guides PDF + accès à vie + mises à jour</li>
+      </ul>
+      <div style="text-align:center">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:#2E5C26">297€</div>
+        <div style="font-size:13px;color:#5C4030;text-decoration:line-through;margin-bottom:18px">645€ si acheté séparément</div>
+        <button class="btn-p" style="font-size:16px;padding:14px 32px" onclick="closeModal('m-pack');showPage('checkout','pack')">Obtenir le Pack Complet →</button>
+        <div style="font-size:11px;color:#5C4030;margin-top:10px">🔒 Paiement sécurisé · Garantie 30 jours</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-engrais" onclick="if(event.target===this)closeModal('m-engrais')">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="m-engrais-title" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700"></h3>
+      <button class="modal-close" onclick="closeModal('m-engrais')">✕</button>
+    </div>
+    <div class="modal-body" id="m-engrais-body"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-veg" onclick="if(event.target===this)closeModal('m-veg')">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-head">
+      <h3 id="m-veg-title" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700"></h3>
+      <button class="modal-close" onclick="closeModal('m-veg')">✕</button>
+    </div>
+    <div class="modal-body" id="m-veg-body"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-blog" onclick="if(event.target===this)closeModal('m-blog')">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="m-blog-title" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;font-family:'Cormorant Garamond',serif"></h3>
+      <button class="modal-close" onclick="closeModal('m-blog')">✕</button>
+    </div>
+    <div class="modal-body" id="m-blog-body"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-login" onclick="if(event.target===this)closeModal('m-login')">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-head">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700">Espace membre</h3>
+      <button class="modal-close" onclick="closeModal('m-login')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-field"><label>Email</label><input type="email" id="login-email" placeholder="votre@email.com"/></div>
+      <div class="form-field"><label>Mot de passe</label><input type="password" id="login-pw" placeholder="••••••••"/></div>
+      <button class="btn-p" style="width:100%;justify-content:center;font-size:15px;padding:13px" onclick="doLogin()">Se connecter →</button>
+      <p style="font-size:12px;color:#5C4030;text-align:center;margin-top:12px">Pas encore membre ? <a href="#" onclick="closeModal('m-login');showPage('formations');return false" style="color:#2E5C26;font-weight:700">Voir les formations</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<button class="chat-btn" id="chat-toggle" title="Parler à Flora">🌿</button>
+<div class="chat-win" id="chat-win">
+  <div class="chat-top">
+    <div style="width:32px;height:32px;background:rgba(168,224,144,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px">🌿</div>
+    <div><div class="chat-top-name">Flora — Conseillère PousseLab</div><div class="chat-top-sub">En ligne · Répond en quelques secondes</div></div>
+    <button onclick="document.getElementById('chat-win').classList.remove('open')" style="background:none;border:none;color:rgba(255,255,255,.5);font-size:18px;cursor:pointer;margin-left:auto">✕</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="msg bot">Bonjour ! 🌱 Je suis Flora, votre conseillère jardinage PousseLab. Quelle est votre situation — balcon, terrasse, intérieur ? Je vous aide à choisir la formation idéale.</div>
+  </div>
+  <form class="chat-form" id="chat-form">
+    <input class="chat-in" id="chat-in" placeholder="Votre question…" autocomplete="off"/>
+    <button class="chat-send" type="submit">→</button>
+  </form>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════
+// DATA
+// ═══════════════════════════════
+
+const FORMATIONS = [
+  {id:"balcon",emoji:"🏙️",badge:"Le plus choisi",title:"Balcon & Appartement",price:89,old:129,bg:"#2A4F24",acc:"#A8E090",tag:"Vos premiers légumes maison",desc:"Tomates cerises, herbes aromatiques, salades et engrais maison. Tout pour démarrer même sans jardin.",modules:5,lessons:22,students:1420,rating:4.9,tags:["Débutant","Petit espace","Rapide"],contenu:["Module 1 : Choisir son substrat et ses pots","Module 2 : Tomates cerises en balcon","Module 3 : Herbes aromatiques — 5 espèces","Module 4 : Salades et légumes-feuilles","Module 5 : Engrais maison — 4 recettes"],progress:65},
+  {id:"terrasse",emoji:"🌞",badge:"Coup de cœur",title:"Terrasse Productive",price:119,old:169,bg:"#7A3A10",acc:"#FFD4A8",tag:"Un vrai potager sur votre terrasse",desc:"Courgettes, tomates, poivrons, haricots. Module engrais maison et purins naturels complet.",modules:6,lessons:28,students:980,rating:4.8,tags:["Intermédiaire","Grande récolte","Famille"],contenu:["Module 1 : Planifier sa terrasse","Module 2 : Tomates grosses variétés","Module 3 : Courgettes et concombres","Module 4 : Poivrons et aubergines","Module 5 : Purins d'ortie et consoude","Module 6 : Association de cultures"],progress:0},
+  {id:"famille",emoji:"👨‍👩‍👧",badge:"⭐ Famille",title:"Jardin en Famille",price:79,old:109,bg:"#1A4A2E",acc:"#90E0B0",tag:"Cultiver avec vos enfants",desc:"Jardiner avec vos enfants — apprendre d'où vient la nourriture, fabriquer les engrais ensemble.",modules:5,lessons:20,students:640,rating:5.0,tags:["Famille","Pédagogique","Tous âges"],contenu:["Module 1 : Les 5 légumes les plus rapides","Module 2 : Radis, salades — récolte en 3 semaines","Module 3 : Engrais maison expliqués aux enfants","Module 4 : Comprendre le sol et les vers","Module 5 : Carnet de récoltes en famille"],progress:0},
+  {id:"interieur",emoji:"🪟",badge:"Tendance",title:"Intérieur & Lumière",price:69,old:99,bg:"#2A3A6A",acc:"#B8D4FF",tag:"Cultiver 365 jours par an",desc:"Micropousses, herbes et salades sous LED. Engrais maison adaptés à la culture intérieure inclus.",modules:5,lessons:18,students:520,rating:4.7,tags:["Appartement","Sans soleil","Toute l'année"],contenu:["Module 1 : Choisir ses LED","Module 2 : Micropousses en 10 jours","Module 3 : Salades et herbes sous lampe","Module 4 : Engrais liquides intérieur","Module 5 : Hydroponie Kratky initiation"],progress:0},
+  {id:"hydro",emoji:"💧",badge:"🆕 Exclusif",title:"Hydroponie Maison",price:99,old:149,bg:"#0E5A7A",acc:"#B0E8FF",tag:"Cultiver sans terre toute l'année",desc:"Zéro terre, zéro substrat. Laitues, tomates et fraises en solution nutritive. 90% moins d'eau.",modules:6,lessons:24,students:310,rating:4.9,tags:["Innovant","Sans terre","Appartement"],contenu:["Module 1 : NFT, DWC, Kratky — lequel choisir","Module 2 : Solutions nutritives, pH, EC","Module 3 : NFT pour laitues et herbes","Module 4 : DWC pour tomates et poivrons","Module 5 : Éclairage LED full-spectrum","Module 6 : Diagnostic carences et algues"],progress:0},
+];
+
+const ENGRAIS = [
+  {id:"ortie",name:"Purin d'ortie",emoji:"🌿",cat:"Purin fermenté",col:"#2A5A1A",colL:"#EAF5E0",diff:"Facile",temps:"2–3 semaines",effet:"Le plus puissant des engrais naturels. Riche en azote, potassium et fer. Stimule la croissance, renforce les défenses immunitaires des plantes.",
+   recette:{ingredients:["1 kg d'orties fraîches (feuilles + tiges, pas les racines)","10 litres d'eau de pluie ou eau décantée","1 seau en plastique de 10-15L avec couvercle","Un bâton pour mélanger"],
+   etapes:["Hachez grossièrement les orties et mettez-les dans le seau.","Couvrez avec l'eau froide (jamais d'eau chaude).","Placez en extérieur — le purin fermente et sent fort !","Remuez chaque jour pendant 2-3 semaines.","Le purin est prêt quand il ne fait plus de bulles (couleur brune-noire).","Filtrez et diluez : 10% pour arrosage foliaire, 20% pour arrosage au pied."],
+   conseil:"Conservez jusqu'à 1 an dans des bouteilles fermées à l'abri du soleil. Idéal pour tomates, courgettes, choux."}},
+  {id:"consoude",name:"Purin de consoude",emoji:"🌸",cat:"Purin fermenté",col:"#5A1A5A",colL:"#F5E8F5",diff:"Facile",temps:"3–4 semaines",effet:"Le roi de la floraison et des fruits. NPK complet et équilibré. À utiliser en alternance avec l'ortie pour des résultats spectaculaires.",
+   recette:{ingredients:["1 kg de feuilles de consoude fraîches","10 litres d'eau de pluie","1 seau avec couvercle"],
+   etapes:["Écrasez les feuilles pour libérer le jus.","Immergez dans l'eau froide.","Laissez fermenter 3-4 semaines en remuant chaque 2-3 jours.","Filtrez quand la fermentation est terminée.","Diluez à 10-20% avant utilisation."],
+   conseil:"Excellent pour les plantes en fleurs et en fruits. Associez ortie (azote) + consoude (potassium) en alternance."}},
+  {id:"banane",name:"Épluchures de banane",emoji:"🍌",cat:"Purin express",col:"#8A6A00",colL:"#FFF8D8",diff:"Très facile",temps:"3–5 jours",effet:"Engrais express de la floraison. Très riche en potassium et phosphore. Favorise la nouaison et améliore la résistance.",
+   recette:{ingredients:["2-3 épluchures de banane","1 litre d'eau"],
+   etapes:["Coupez les épluchures en morceaux.","Faites macérer dans 1L d'eau à température ambiante, 3-5 jours.","Filtrez et utilisez directement, sans dilution.","Alternative rapide : séchez et mixez les épluchures → poudre à incorporer au substrat."],
+   conseil:"Utilisez en période de floraison, 1 fois par semaine. Idéal pour tomates, fraises, poivrons."}},
+  {id:"cafe",name:"Marc de café",emoji:"☕",cat:"Amendement direct",col:"#5A3010",colL:"#F5EAD8",diff:"Très facile",temps:"Immédiat",effet:"Fertilisant léger en azote. Répulsif naturel contre limaces et fourmis. Légèrement acidifiant — parfait pour les plantes acidophiles.",
+   recette:{ingredients:["Marc de café usagé","Substrat ou terre"],
+   etapes:["Laissez sécher le marc à l'air libre (évite les moisissures).","Incorporez directement en surface du pot, 1-2cm d'épaisseur.","Alternative : préparez une décoction — 100g marc + 1L eau bouillante, laissez refroidir et arrosez.","Renouvelez toutes les 2-3 semaines."],
+   conseil:"Ne pas mettre plus de 25% de marc dans le substrat. Idéal pour tomates, carottes, fraisiers, fougères."}},
+  {id:"oeufs",name:"Coquilles d'œufs",emoji:"🥚",cat:"Amendement calcaire",col:"#8A6A10",colL:"#FFF5D8",diff:"Très facile",temps:"Immédiat à 6 mois",effet:"Apport de calcium essentiel. Prévient la nécrose apicale des tomates. Barrière physique anti-limaces efficace.",
+   recette:{ingredients:["Coquilles d'œufs propres et séchées"],
+   etapes:["Rincez et séchez complètement les coquilles (four 10 min à 100°C).","Option 1 — Rapide : Écrasez grossièrement et disposez en cercle autour des plantes (anti-limaces).","Option 2 — Engrais lent : Mixez en poudre fine, incorporez 1-2 cuillères à soupe par pot, mélangez au substrat.","Option 3 — Décoction : Faites bouillir les coquilles 10 min dans 1L d'eau, laissez infuser 24h, filtrez, arrosez."],
+   conseil:"La poudre fine met 3-6 mois à se décomposer — prévoyez à l'avance. Indispensable pour les tomates (1 coquille/semaine en décoction)."}},
+  {id:"cuisson",name:"Eau de cuisson",emoji:"🫙",cat:"Fertilisant immédiat",col:"#6A4A20",colL:"#F5EAD8",diff:"Très facile",temps:"Immédiat",effet:"Le fertilisant le plus simple. Concentre tous les minéraux lessivés des légumes à la cuisson. Gratuit à chaque repas.",
+   recette:{ingredients:["Eau de cuisson de légumes, pâtes, riz (sans sel)"],
+   etapes:["Laissez refroidir complètement l'eau de cuisson.","N'utilisez jamais d'eau salée — le sel brûle les racines.","Arrosez directement au pied des plantes, en remplacement de l'eau classique.","Idéal pour les arrosages 2-3 fois par semaine."],
+   conseil:"Eau de cuisson de pommes de terre = riche en amidon, potassium, magnésium. Eau de riz = silice et B1. À utiliser dans les 24h."}},
+  {id:"cendres",name:"Cendres de bois",emoji:"🔥",cat:"Amendement minéral",col:"#4A4A4A",colL:"#EAEAEA",diff:"Facile",temps:"Immédiat",effet:"Engrais potassique et calcaire puissant. Répulsif efficace contre limaces et fourmis. Neutralise les sols acides.",
+   recette:{ingredients:["Cendres de bois non traitées (pas de cendres de charbon ou bois peint)"],
+   etapes:["Laissez refroidir complètement avant utilisation.","Saupoudrez légèrement en surface du substrat (max 1 cuillère à café par litre de terre).","Ou diluez dans l'eau : 100g/10L, laissez reposer 2 jours, filtrez, arrosez.","Répulsif : disposez un cercle de cendres sèches autour des pots."],
+   conseil:"ATTENTION : Ne jamais mélanger avec du purin d'ortie ou d'azote — réaction chimique qui libère l'ammoniaque. Utiliser séparément, à 2 semaines d'intervalle."}},
+  {id:"agrumes",name:"Épluchures d'agrumes",emoji:"🍊",cat:"Répulsif naturel",col:"#E05A00",colL:"#FFF0D8",diff:"Très facile",temps:"Immédiat",effet:"Répulsif naturel puissant contre limaces, fourmis et pucerons. Légèrement acidifiant, riche en limonène.",
+   recette:{ingredients:["Épluchures d'orange, citron, mandarine, pamplemousse"],
+   etapes:["Séchez les épluchures au four (80°C, 30 min) ou à l'air libre.","Option répulsif sec : Disposez autour des plantes ou enterrez légèrement.","Option décoction : Faites bouillir les épluchures dans 1L d'eau 15 min, laissez infuser 24h, filtrez, vaporisez sur les feuilles.","Renouvelez après chaque pluie."],
+   conseil:"La décoction d'agrumes en vaporisation foliaire est très efficace contre les pucerons. Associez aux coquilles d'œufs pour une double protection anti-nuisibles."}},
+];
+
+const VEGETABLES = [
+  {emoji:"🍅",name:"Tomates cerises",cat:"Fruit-légume",diff:"Facile",semis:"Fév–Mar",repique:"Avr–Mai",recolte:"Juil–Oct",expo:"Plein soleil",arrosage:"Régulier",engrais:"Ortie + coquilles",pot:"20L min",locs:["balcon","terrasse"],conseil:"Tuteurez dès 30cm. Pincez les gourmands. Arrosez à la base, jamais sur les feuilles."},
+  {emoji:"🌶️",name:"Poivrons",cat:"Fruit-légume",diff:"Moyen",semis:"Jan–Fév",repique:"Avr–Mai",recolte:"Août–Oct",expo:"Plein soleil",arrosage:"Régulier",engrais:"Consoude",pot:"15L",locs:["balcon","terrasse"],conseil:"Besoin de chaleur — attendez 15°C la nuit pour sortir. Protégez du vent."},
+  {emoji:"🥒",name:"Courgettes",cat:"Courge",diff:"Facile",semis:"Avr–Mai",repique:"Mai",recolte:"Juin–Oct",expo:"Plein soleil",arrosage:"Abondant",engrais:"Ortie + consoude",pot:"40L min",locs:["terrasse","jardin"],conseil:"Récoltez jeune (15-20cm) pour stimuler la production. Une plante peut produire 20 fruits."},
+  {emoji:"🥬",name:"Salades",cat:"Légume-feuille",diff:"Très facile",semis:"Toute l'année",repique:"3-4 sem après",recolte:"8-10 semaines",expo:"Mi-ombre",arrosage:"Régulier",engrais:"Ortie dilué",pot:"5L/plant",locs:["balcon","terrasse","interieur"],conseil:"Semez toutes les 3 semaines pour une récolte continue. En été, protégez de la chaleur."},
+  {emoji:"🍃",name:"Épinards",cat:"Légume-feuille",diff:"Facile",semis:"Mar–Avr, Sep–Oct",repique:"Non nécessaire",recolte:"6-8 semaines",expo:"Mi-ombre",arrosage:"Régulier",engrais:"Ortie léger",pot:"5L",locs:["balcon","terrasse","interieur"],conseil:"Évitez la chaleur — preferez printemps/automne. Cueillez feuille par feuille."},
+  {emoji:"🌿",name:"Basilic",cat:"Herbe aromatique",diff:"Facile",semis:"Avr–Mai",repique:"Mai–Juin",recolte:"Juin–Oct",expo:"Plein soleil",arrosage:"Modéré",engrais:"Peu exigeant",pot:"2L",locs:["balcon","terrasse","interieur"],conseil:"Pincez les fleurs pour prolonger la récolte. N'arrosez pas le soir, risque de mildiou."},
+  {emoji:"🥕",name:"Carottes",cat:"Légume-racine",diff:"Facile",semis:"Mar–Juil",repique:"Non — semis en place",recolte:"90-120 jours",expo:"Soleil à mi-ombre",arrosage:"Régulier",engrais:"Peu (pas d'azote)",pot:"30cm profondeur min",locs:["terrasse","jardin"],conseil:"Substrat meuble, sans cailloux. Éclaircissez à 5cm. Variétés courtes pour les pots."},
+  {emoji:"🍓",name:"Fraises",cat:"Fruit",diff:"Facile",semis:"Stolons en août",repique:"Août–Sep",recolte:"Mai–Oct",expo:"Plein soleil",arrosage:"Régulier",engrais:"Banane + consoude",pot:"10L/pied",locs:["balcon","terrasse"],conseil:"Supprimez les stolons pour concentrer l'énergie sur les fruits. Remplacez les plants tous les 3 ans."},
+  {emoji:"🥦",name:"Brocoli",cat:"Légume-feuille",diff:"Moyen",semis:"Avr–Juil",repique:"5-6 semaines après",recolte:"Sep–Nov",expo:"Soleil à mi-ombre",arrosage:"Régulier",engrais:"Ortie (azote)",pot:"20L",locs:["terrasse","jardin"],conseil:"Récoltez la tête centrale avant floraison. Des pousses latérales repoussent ensuite."},
+  {emoji:"💧",name:"Micropousses",cat:"Micro-culture",diff:"Très facile",semis:"Toute l'année",repique:"Non",recolte:"7-14 jours",expo:"Lumière indirecte",arrosage:"Vaporisation",engrais:"Aucun",pot:"Plateau 5cm",locs:["interieur","balcon"],conseil:"Rincez 2x/jour. Récoltez à 5-7cm avec des ciseaux. Tournesol, radis, pois, brocoli = les plus rapides."},
+  {emoji:"🧄",name:"Ail",cat:"Bulbe",diff:"Très facile",semis:"Oct–Nov (caïeux)",repique:"Non — semis en place",recolte:"Juin–Juil",expo:"Plein soleil",arrosage:"Peu",engrais:"Cendres",pot:"5L/bulbe",locs:["balcon","terrasse","jardin"],conseil:"Plantez pointe vers le haut. Arrosez peu — l'ail déteste les excès d'eau."},
+  {emoji:"🫘",name:"Haricots verts",cat:"Légumineuse",diff:"Facile",semis:"Mai–Juin",repique:"Non — semis en place",recolte:"60-70 jours",expo:"Plein soleil",arrosage:"Modéré",engrais:"Peu nécessaire",pot:"15L",locs:["terrasse","jardin"],conseil:"Les haricots fixent l'azote — bon précédent cultural. Récoltez régulièrement pour stimuler."},
+  {emoji:"🍆",name:"Aubergines",cat:"Fruit-légume",diff:"Moyen",semis:"Jan–Fév",repique:"Mai",recolte:"Août–Oct",expo:"Plein soleil",arrosage:"Régulier",engrais:"Consoude + ortie",pot:"20L",locs:["terrasse","jardin"],conseil:"Besoin de chaleur intense. Taillez à 4-5 tiges. Arrosez généreusement en été."},
+  {emoji:"🌱",name:"Radis",cat:"Légume-racine",diff:"Très facile",semis:"Mar–Sep",repique:"Non",recolte:"20-25 jours",expo:"Mi-ombre",arrosage:"Régulier",engrais:"Aucun",pot:"10cm profondeur",locs:["balcon","terrasse","interieur"],conseil:"Le légume le plus rapide ! Idéal pour initier les enfants. Éclaircissez si nécessaire."},
+  {emoji:"🍅",name:"Tomates grosses",cat:"Fruit-légume",diff:"Moyen",semis:"Fév–Mar",repique:"Avr–Mai",recolte:"Août–Oct",expo:"Plein soleil 8h min",arrosage:"Très régulier",engrais:"Ortie + consoude + coquilles",pot:"40L min",locs:["terrasse","jardin"],conseil:"Tuteurage indispensable. Supprimez tous les gourmands. Paillez le pied pour conserver l'humidité."},
+  {emoji:"🥔",name:"Pommes de terre",cat:"Légume-racine",diff:"Facile",semis:"Mar–Avr (plants)",repique:"Non",recolte:"Juil–Sep",expo:"Plein soleil",arrosage:"Régulier",engrais:"Purin banane + cendres",pot:"50L ou sac spécial",locs:["terrasse","jardin"],conseil:"Buttez régulièrement. Récoltez 2 semaines après flétrissement des fanes. Variétés primeur pour les pots."},
+  {emoji:"🌿",name:"Persil",cat:"Herbe aromatique",diff:"Facile",semis:"Mar–Sep",repique:"Non ou oui",recolte:"8-10 semaines",expo:"Mi-ombre",arrosage:"Régulier",engrais:"Peu",pot:"1L",locs:["balcon","terrasse","interieur"],conseil:"Germination lente (3 semaines). Faites tremper les graines 24h avant semis."},
+  {emoji:"🌿",name:"Menthe",cat:"Herbe aromatique",diff:"Très facile",semis:"Boutures",repique:"Toujours en pot",recolte:"Mai–Oct",expo:"Mi-ombre à soleil",arrosage:"Abondant",engrais:"Peu",pot:"2L (isolé !)",locs:["balcon","terrasse","interieur"],conseil:"ATTENTION : la menthe est envahissante. Cultivez toujours en pot isolé. Elle adore l'humidité."},
+  {emoji:"🧅",name:"Oignons",cat:"Bulbe",diff:"Facile",semis:"Fév–Mar ou bulbilles Mar–Avr",repique:"Oui si semis",recolte:"Juil–Août",expo:"Plein soleil",arrosage:"Modéré",engrais:"Cendres",pot:"15L",locs:["terrasse","jardin"],conseil:"Récoltez quand les fanes tombent. Séchez 2 semaines avant stockage."},
+  {emoji:"🌽",name:"Maïs",cat:"Céréale",diff:"Moyen",semis:"Avr–Mai",repique:"Non — semis en place",recolte:"Août–Sep",expo:"Plein soleil",arrosage:"Abondant",engrais:"Ortie (azote)",pot:"30L min / 4 pieds ensemble",locs:["jardin"],conseil:"Pollinisation croisée — plantez au minimum 4 pieds en carré. Arrosez copieusement lors de la floraison."},
+  {emoji:"🫑",name:"Piment",cat:"Fruit-légume",diff:"Moyen",semis:"Jan–Fév",repique:"Avr–Mai",recolte:"Août–Oct",expo:"Plein soleil",arrosage:"Régulier",engrais:"Consoude",pot:"10L",locs:["balcon","terrasse"],conseil:"Encore plus gourmand en chaleur que le poivron. Idéal pour les balcons très ensoleillés."},
+  {emoji:"🌿",name:"Ciboulette",cat:"Herbe aromatique",diff:"Très facile",semis:"Mar–Sep",repique:"Non nécessaire",recolte:"Toute l'année",expo:"Soleil à mi-ombre",arrosage:"Régulier",engrais:"Peu",pot:"1L",locs:["balcon","terrasse","interieur"],conseil:"Coupez à 3cm du sol — repousse en 2-3 semaines. Fleurs violettes comestibles."},
+  {emoji:"🧅",name:"Poireaux",cat:"Légume-tige",diff:"Facile",semis:"Fév–Mar",repique:"Juin",recolte:"Oct–Mar",expo:"Soleil à mi-ombre",arrosage:"Régulier",engrais:"Ortie",pot:"20L",locs:["terrasse","jardin"],conseil:"Repique profond (trou de 15cm) pour blanchir la tige. Culture longue durée — patience récompensée."},
+  {emoji:"🫛",name:"Petits pois",cat:"Légumineuse",diff:"Facile",semis:"Fév–Mar",repique:"Non",recolte:"Mai–Juin",expo:"Soleil à mi-ombre",arrosage:"Régulier",engrais:"Peu nécessaire",pot:"15L",locs:["balcon","terrasse"],conseil:"Semez dès février sous abri. Filet ou treillage nécessaire. Récoltez avant que les gousses durcissent."},
+  {emoji:"🌰",name:"Courge butternut",cat:"Courge",diff:"Facile",semis:"Avr–Mai",repique:"Mai–Juin",recolte:"Sep–Oct",expo:"Plein soleil",arrosage:"Abondant",engrais:"Ortie + consoude",pot:"50L ou pleine terre",locs:["jardin"],conseil:"Plante envahissante — prévoyez 2m². Récoltez quand le pédoncule liège. Conservation 6 mois."},
+  {emoji:"🥗",name:"Roquette",cat:"Légume-feuille",diff:"Très facile",semis:"Mar–Oct",repique:"Non",recolte:"4-6 semaines",expo:"Mi-ombre",arrosage:"Régulier",engrais:"Peu",pot:"5L",locs:["balcon","terrasse","interieur"],conseil:"Croissance très rapide. Monte en graine rapidement par chaleur — semez à l'ombre en été."},
+  {emoji:"🫐",name:"Myrtilles",cat:"Fruit",diff:"Moyen",semis:"Plants en mars",repique:"Non",recolte:"Juil–Sep",expo:"Plein soleil",arrosage:"Régulier (eau de pluie)",engrais:"Marc de café (acidifiant)",pot:"20L par pied",locs:["balcon","terrasse"],conseil:"Exige un sol très acide (pH 4-5). N'utilisez que l'eau de pluie. Plantez 2 variétés différentes."},
+  {emoji:"🌻",name:"Tournesol",cat:"Fleur comestible",diff:"Très facile",semis:"Avr–Mai",repique:"Non",recolte:"Août–Sep (graines)",expo:"Plein soleil",arrosage:"Modéré",engrais:"Peu",pot:"20L",locs:["balcon","terrasse"],conseil:"Attire les pollinisateurs bénéfiques. Graines comestibles ou micropousses en 7 jours."},
+  {emoji:"🫙",name:"Concombres",cat:"Courge",diff:"Facile",semis:"Avr–Mai",repique:"Mai–Juin",recolte:"Juil–Sep",expo:"Plein soleil",arrosage:"Très régulier",engrais:"Ortie + consoude",pot:"20L",locs:["terrasse","jardin"],conseil:"Tuteurage nécessaire. Arrosez chaque jour par chaleur. Récoltez avant jaunissement."},
+  {emoji:"🌿",name:"Thym",cat:"Herbe aromatique",diff:"Très facile",semis:"Mar–Mai",repique:"Avril",recolte:"Toute l'année",expo:"Plein soleil",arrosage:"Peu",engrais:"Aucun",pot:"1L",locs:["balcon","terrasse"],conseil:"Plante méditerranéenne très résistante. Taille légère après floraison. Se dessèche plutôt que de pourrir."},
+  {emoji:"🌿",name:"Romarin",cat:"Herbe aromatique",diff:"Facile",semis:"Boutures",repique:"Toujours",recolte:"Toute l'année",expo:"Plein soleil",arrosage:"Très peu",engrais:"Aucun",pot:"3L",locs:["balcon","terrasse"],conseil:"Déteste l'humidité. Substrat drainant obligatoire. Taille en forme pour éviter le bois mort."},
+];
+
+const REGIONS = [
+  {id:"nord",emoji:"❄️",label:"Nord & Nord-Est",climate:"Hivers longs et froids. Variétés précoces obligatoires.",frost:"Dernière gelée : avril-mai",col:"#2A4F8A",colL:"#D8E8F8",semisInt:"Fév (sous abri chaud)",sortie:"Fin mai",avantage:"Étés doux idéaux pour salades et choux"},
+  {id:"normandie",emoji:"🌧️",label:"Normandie & Bretagne",climate:"Océanique doux et humide. Surveillez mildiou et limaces.",frost:"Dernière gelée : mars",col:"#2A6A5A",colL:"#D0F0E8",semisInt:"Jan–Fév (sous abri)",sortie:"Mi-avril",avantage:"Humidité naturelle réduit l'arrosage"},
+  {id:"idf",emoji:"🌤️",label:"Île-de-France & Centre",climate:"Semi-continental tempéré. Grande diversité de cultures.",frost:"Dernière gelée : fin mars-mi avril",col:"#2E5C26",colL:"#EAF5E8",semisInt:"Fév (sous abri)",sortie:"Fin avril",avantage:"Saison 6-7 mois, idéale pour les débutants"},
+  {id:"atlantique",emoji:"🌊",label:"Atlantique & Sud-Ouest",climate:"Étés chauds, hivers doux. Saison de culture 7-8 mois.",frost:"Dernière gelée : mi-mars",col:"#7A4A10",colL:"#F8EAD8",semisInt:"Jan–Fév",sortie:"Début avril",avantage:"Excellente saison, maïs et melon possibles"},
+  {id:"med",emoji:"☀️",label:"Méditerranée & PACA",climate:"Étés très chauds et secs. Culture quasi-permanente.",frost:"Dernière gelée : fin février",col:"#B84E1E",colL:"#F8E8D8",semisInt:"Dès janvier",sortie:"Mi-mars",avantage:"Culture possible 10-11 mois par an"},
+  {id:"montagne",emoji:"⛰️",label:"Montagne & Massif Central",climate:"Saison très courte. Cultures rapides prioritaires.",frost:"Dernière gelée : mai-juin",col:"#4A4A6A",colL:"#E8E8F8",semisInt:"Fév–Mar (sous abri)",sortie:"Juin",avantage:"Qualité exceptionnelle des légumes de montagne"},
+];
+
+const SAISONS = {
+  printemps:{label:"🌸 Printemps",col:"#2E5C26",items:[
+    {emoji:"🌱",name:"Radis",action:"Semez",actionCol:"#2E5C26",actionBg:"#EAF5E8",tip:"En pleine terre ou en pot dès mars. Récolte en 25 jours."},
+    {emoji:"🥬",name:"Salades",action:"Semez",actionCol:"#2E5C26",actionBg:"#EAF5E8",tip:"Toutes variétés. Semis échelonnés toutes les 3 semaines."},
+    {emoji:"🍅",name:"Tomates",action:"Semez",actionCol:"#2E5C26",actionBg:"#EAF5E8",tip:"Sous abri chaud (20°C). Repiquage après les saints de glace."},
+    {emoji:"🫛",name:"Petits pois",action:"Plantez",actionCol:"#1A5A8A",actionBg:"#E0EAF5",tip:"Semis en place dès février-mars. Récolte en mai-juin."},
+    {emoji:"🌿",name:"Herbes",action:"Semez",actionCol:"#2E5C26",actionBg:"#EAF5E8",tip:"Basilic, persil, ciboulette. À l'intérieur jusqu'en mai."},
+    {emoji:"🧄",name:"Ail",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Si planté en octobre, récolte en juin quand les fanes jaunissent."},
+  ]},
+  ete:{label:"☀️ Été",col:"#D4850A",items:[
+    {emoji:"🍅",name:"Tomates",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Arrosez régulièrement. Pincez les gourmands. Tuteurez."},
+    {emoji:"🥒",name:"Courgettes",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Récoltez toutes les 2-3 jours. Productivité maximale en juillet."},
+    {emoji:"🌶️",name:"Poivrons",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Vert dès août, rouge en septembre. Plus doux mûrs."},
+    {emoji:"🍓",name:"Fraises",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Récolte quotidienne. Supprimez les stolons pour concentrer l'énergie."},
+    {emoji:"🥬",name:"Salades (2e semis)",action:"Semez",actionCol:"#2E5C26",actionBg:"#EAF5E8",tip:"Semis à l'ombre en août pour récolte d'automne."},
+    {emoji:"🫘",name:"Haricots",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Récoltez avant la graine. Stimule la production."},
+  ]},
+  automne:{label:"🍂 Automne",col:"#B84E1E",items:[
+    {emoji:"🥕",name:"Carottes",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Le froid améliore le goût — attendez les premières gelées légères."},
+    {emoji:"🥦",name:"Brocoli",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Récoltez tête centrale avant floraison. Des pousses repoussent."},
+    {emoji:"🌿",name:"Épinards",action:"Semez",actionCol:"#2E5C26",actionBg:"#EAF5E8",tip:"Idéal en septembre pour une récolte de novembre-décembre."},
+    {emoji:"🧅",name:"Poireaux",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Résistent aux gelées. Récoltez d'octobre à mars."},
+    {emoji:"🧄",name:"Ail",action:"Plantez",actionCol:"#5A1A5A",actionBg:"#F5E8F5",tip:"Plantez les caïeux en octobre pour une récolte l'été prochain."},
+    {emoji:"🥔",name:"Pommes de terre",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Récoltez 2 semaines après flétrissement des fanes."},
+  ]},
+  hiver:{label:"❄️ Hiver",col:"#2A4F8A",items:[
+    {emoji:"💧",name:"Micropousses",action:"Semez",actionCol:"#2E5C26",actionBg:"#EAF5E8",tip:"Toute l'année en intérieur. Récolte en 7-14 jours."},
+    {emoji:"🥬",name:"Salades (sous abri)",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Sous serre ou véranda. Variétés résistantes au froid."},
+    {emoji:"🌿",name:"Herbes (intérieur)",action:"Récoltez",actionCol:"#8A6A00",actionBg:"#FFF8D8",tip:"Basilic, ciboulette, menthe sur le rebord de fenêtre."},
+    {emoji:"🍅",name:"Tomates",action:"Planifiez",actionCol:"#4A4A8A",actionBg:"#E8E8F5",tip:"Préparez votre substrat. Commandez vos graines pour février."},
+    {emoji:"🧄",name:"Ail",action:"Surveillez",actionCol:"#4A4A8A",actionBg:"#E8E8F5",tip:"Les caïeux plantés en octobre commencent à lever. Bon signe !"},
+    {emoji:"🌱",name:"Planification",action:"Préparez",actionCol:"#5A1A5A",actionBg:"#F5E8F5",tip:"Dessinez votre plan de culture pour le printemps. Commandez les graines."},
+  ]}
+};
+
+const BAC_DATA = [
+  {name:"Bac potager 1×2m",dims:{l:200,w:100,h:30},vol:"600L",mat:"Bois (Douglas, mélèze)",cost:"80-150€",forVeg:["Tomates","Salades","Herbes","Carottes","Radis","Courgettes"],note:"La taille idéale pour débutant. Accès sans marcher dedans."},
+  {name:"Bac compact 80×60cm",dims:{l:80,w:60,h:25},vol:"120L",mat:"Bois ou composite",cost:"40-80€",forVeg:["Salades","Herbes","Radis","Épinards"],note:"Parfait pour balcon ou petite terrasse. Facile à déplacer."},
+  {name:"Grande carrée 1×1m",dims:{l:100,w:100,h:40},vol:"400L",mat:"Bois (pin traité classe 4)",cost:"60-120€",forVeg:["Tomates","Poivrons","Courgettes","Haricots"],note:"Format carré optimal. Accès facile depuis tous les côtés."},
+  {name:"Jardinière fenêtre",dims:{l:80,w:20,h:20},vol:"32L",mat:"Plastique ou bois",cost:"15-35€",forVeg:["Herbes","Radis","Salades","Piment"],note:"Pour rebord de fenêtre ou balcon. Arrosage fréquent."},
+  {name:"Bac haussé 1.2×0.6m",dims:{l:120,w:60,h:70},vol:"504L",mat:"Bois + pieds métal",cost:"150-250€",forVeg:["Tomates","Courgettes","Aubergines","Poireaux"],note:"Hauteur ergonomique — jardinez sans vous baisser. Idéal pour dos fragile."},
+];
+
+const POT_DATA = [
+  {name:"Pot 5L",dims:{d:20,h:20},vol:"5L",forVeg:["Herbes","Radis","Salade","Épinards","Ail"],note:"Le plus petit utile. Pour herbes aromatiques uniquement."},
+  {name:"Pot 10L",dims:{d:26,h:24},vol:"10L",forVeg:["Fraises","Piment","Poivron nain","Radis"],note:"Fraisiers, piments. Minimum pour un légume-fruit nain."},
+  {name:"Pot 15-20L",dims:{d:32,h:30},vol:"15-20L",forVeg:["Tomates cerises","Poivrons","Aubergines","Concombres","Haricots"],note:"Taille polyvalente — la plus recommandée. 90% des légumes."},
+  {name:"Pot 30-40L",dims:{d:40,h:35},vol:"30-40L",forVeg:["Tomates grosses","Courgettes","Carottes (longues)"],note:"Pour les gros légumes-fruits. Lourd une fois rempli."},
+  {name:"Sac de culture 50L",dims:{d:45,h:40},vol:"50L",forVeg:["Pommes de terre","Courgettes","Courges"],note:"Léger, peu cher, pliable hors saison. Idéal pommes de terre."},
+  {name:"Jardinière longue 60L",dims:{l:80,w:25,h:30},vol:"60L",forVeg:["Salades","Herbes","Radis","Fraises","Piment"],note:"Format linéaire pour rebord de terrasse ou balcon."},
+];
+
+const BLOG = [
+  {id:1,cat:"Technique",readTime:"6 min",title:"Le substrat idéal pour vos tomates en pot",date:"28 mars 2026",img:"https://images.unsplash.com/photo-1592921870583-aeafb0639ffe?w=600&q=80",excerpt:"La composition exacte du substrat parfait pour des tomates cerises abondantes sur balcon.",full:`<p>Le substrat est la base de tout potager en pot. Les erreurs de substrat sont responsables de 80% des échecs chez les débutants.</p><h3>La composition idéale</h3><p><strong>60% terreau universel de qualité</strong> — choisissez un terreau enrichi avec un pH 6-7. Évitez les marques discount dont les fibres de coco sont mal humidifiées.</p><p><strong>30% perlite horticole</strong> — indispensable pour le drainage. La perlite aère les racines et évite l'asphyxie racinaire, principale cause de mort des plants en pot.</p><p><strong>10% compost mûr</strong> — si vous en avez. Riche en micro-organismes bénéfiques.</p><h3>Le test du drainage</h3><p>Versez 1 litre d'eau dans votre pot. L'eau doit ressortir par les trous en moins de 30 secondes. Si c'est plus long, ajoutez de la perlite.</p><h3>Les erreurs à éviter</h3><p>N'utilisez jamais de terre de jardin en pot — elle se compacte et étouffe les racines. Le terreau de qualité vaut l'investissement : c'est la fondation de vos récoltes.</p>`},
+  {id:2,cat:"Engrais naturels",readTime:"8 min",title:"Purin d'ortie maison : le guide complet",date:"15 mars 2026",img:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80",excerpt:"Comment préparer, utiliser et doser le purin d'ortie — l'engrais naturel le plus puissant.",full:`<p>Le purin d'ortie est l'engrais naturel le plus puissant disponible gratuitement. Voici tout ce que vous devez savoir pour le préparer et l'utiliser efficacement.</p><h3>Pourquoi l'ortie ?</h3><p>L'ortie (Urtica dioica) est l'une des plantes les plus nutritives qui soit. Riche en azote, potassium, calcium, fer et magnésium, elle constitue un engrais complet qui rivalise avec les engrais chimiques.</p><h3>La recette de base</h3><p>1 kg d'orties fraîches pour 10 litres d'eau de pluie. Laissez fermenter 2-3 semaines à l'extérieur, en remuant quotidiennement. Le purin est prêt quand la fermentation cesse (plus de bulles).</p><h3>Comment l'utiliser ?</h3><p><strong>Arrosage au pied</strong> : diluez à 20% (200ml de purin pour 1L d'eau). Arrosez au pied une fois par semaine en période de croissance.</p><p><strong>Pulvérisation foliaire</strong> : diluez à 5% pour renforcer les défenses. Appliquez le soir pour éviter les brûlures.</p>`},
+  {id:3,cat:"Saisonnier",readTime:"5 min",title:"Quoi semer en mars selon votre région ?",date:"1 mars 2026",img:"https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80",excerpt:"Calendrier précis des semis de mars pour les 6 zones climatiques françaises.",full:`<p>Mars est le mois charnière du jardinier. Les jours allongent, les températures remontent, et la tentation de semer est forte. Mais attention aux retours de froid !</p><h3>Ce qu'on sème partout en mars</h3><p>Les <strong>légumes à semer en intérieur</strong> sont universels en mars : tomates, poivrons, aubergines, basilic. Ces plantes ont besoin de 6-8 semaines avant d'être repiquées en extérieur après les saints de glace (12-13 mai).</p><h3>Par région</h3><p><strong>PACA et Atlantique</strong> : vous pouvez semer radis, salades et épinards directement en extérieur dès début mars. Les dernières gelées sont rares.</p><p><strong>Île-de-France et Centre</strong> : attendez mi-mars pour les semis extérieurs. Protégez avec un voile de forçage si gel annoncé.</p><p><strong>Nord, Normandie, Montagne</strong> : tout reste à l'intérieur jusqu'en avril. Mais c'est le moment idéal de semer sous verre.</p>`},
+  {id:4,cat:"Économie",readTime:"4 min",title:"Économisez 127€/mois avec votre potager",date:"10 fév. 2026",img:"https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=600&q=80",excerpt:"Calcul réel des économies de nos élèves sur 6 mois. Les chiffres sont surprenants.",full:`<p>Nous avons interrogé 312 élèves PousseLab sur leurs dépenses alimentaires avant et après avoir démarré leur potager. Les résultats sont parlants.</p><h3>La méthode de calcul</h3><p>Nous comparons les courses de fruits et légumes frais achetés en grande surface vs le coût de production maison (substrat, eau, graines). Nous n'incluons pas le coût des formations, qui sont amorties en 1-2 mois.</p><h3>Les chiffres</h3><p>Un balcon bien géré (4-6 pots de 20L) peut produire :<br>- 2-3 kg de tomates cerises par mois (valeur : 12-18€)<br>- 500g d'herbes aromatiques (valeur : 15-20€)<br>- 1 kg de salades (valeur : 8-12€)<br>- Légumes variés selon saison (30-80€)</p><p>Soit une économie de 65 à 130€ par mois selon la surface et la rigueur — pour un coût de production de 10-15€ (eau + éventuels engrais).</p>`},
+  {id:5,cat:"Santé & Nature",readTime:"7 min",title:"Comprendre le sol vivant pour jardiner naturel",date:"20 fév. 2026",img:"https://images.unsplash.com/photo-1595207836862-8a1aaac37a8b?w=600&q=80",excerpt:"Les vers de terre, champignons et bactéries sont vos meilleurs alliés au jardin.",full:`<p>Le sol est un écosystème d'une complexité stupéfiante. Dans une poignée de terre saine, il y a plus d'êtres vivants que d'humains sur Terre.</p><h3>Les acteurs clés</h3><p><strong>Les vers de terre</strong> aèrent le sol, mélangent les matières organiques et produisent du vermicompost — l'engrais le plus concentré qui existe. Leur présence indique un sol en bonne santé.</p><p><strong>Les mycorhizes</strong> sont des champignons microscopiques qui s'associent aux racines. Ils multiplient par 10 la surface d'absorption des racines. Vous pouvez acheter des inoculants mycorhiziens pour booster vos transplants.</p><p><strong>Les bactéries fixatrices d'azote</strong> (genre Rhizobium) colonisent les légumineuses et capturent l'azote atmosphérique gratuitement — c'est pour ça que les haricots enrichissent le sol.</p>`},
+  {id:6,cat:"Technique",readTime:"5 min",title:"5 erreurs qui tuent vos tomates en pot",date:"5 mars 2026",img:"https://images.unsplash.com/photo-1582284540020-8acbe03f4924?w=600&q=80",excerpt:"Les erreurs les plus fréquentes des débutants — et comment les éviter facilement.",full:`<p>Les tomates en pot sont capricieuses, mais leurs exigences sont connues et évitables. Voici les 5 erreurs qui font mourir 80% des plants des débutants.</p><h3>1. Le pot trop petit</h3><p>Les tomates ont un système racinaire impressionnant. Un pot de moins de 15-20L ne suffira pas. En dessous, la plante stresse, les fruits craquèlent et la production s'effondre.</p><h3>2. L'arrosage irrégulier</h3><p>L'arrosage irrégulier (sec puis inondé) provoque la "nécrose apicale" — cette tache noire au bas du fruit. Arrosez régulièrement, toujours la même quantité, idéalement le matin.</p><h3>3. Oublier les gourmands</h3><p>Les gourmands (pousses axillaires) pompent toute l'énergie de la plante. Pincez-les systématiquement quand ils mesurent moins de 3cm — c'est indolore pour la plante et crucial pour la récolte.</p><h3>4. Ne pas tuteurer assez tôt</h3><p>Tuteurez dès la plantation. Un plant affaissé est un plant stressé. Le tuteurage préventif évite les tiges cassées et les maladies fongiques.</p><h3>5. Arroser les feuilles</h3><p>L'eau sur les feuilles favorise le mildiou, la maladie N°1 des tomates. Arrosez toujours au pied, jamais en aspersion.</p>`},
+];
+
+const TEMOIGNAGES = [
+  {name:"Marie-Claire B.",city:"Lyon",f:"Balcon & Appartement",stars:5,av:"👩",txt:"Mes enfants se battent pour arroser les tomates. Le purin d'ortie maison a tout changé.",det:"Économise 90€/mois"},
+  {name:"Julien T.",city:"Bordeaux",f:"Terrasse Productive",stars:5,av:"🧔",txt:"3 kg de tomates en juillet. Zéro pesticide, zéro emballage. Je sais exactement ce que je mange.",det:"3 kg récoltés en juillet"},
+  {name:"Amina K.",city:"Paris 15e",f:"Jardin en Famille",stars:5,av:"👩‍🦱",txt:"Ma fille de 6 ans mange des épinards maintenant. PousseLab a rendu le jardinage pédagogique.",det:"3 enfants conquis"},
+  {name:"Pierre M.",city:"Nantes",f:"Hydroponie Maison",stars:5,av:"👨",txt:"En 3 semaines j'avais mes premières laitues. Zéro terre, zéro salissures. Bluffant.",det:"Cultive en hydroponie"},
+  {name:"Sophie L.",city:"Toulouse",f:"Terrasse Productive",stars:5,av:"👩‍🦳",txt:"Je pensais avoir la main noire. Maintenant j'offre mes courgettes aux voisins.",det:"Première récolte en 6 semaines"},
+  {name:"Thomas R.",city:"Strasbourg",f:"Intérieur & Lumière",stars:4,av:"👨‍🦱",txt:"En hiver à Strasbourg, j'ai des herbes fraîches à volonté grâce aux LED.",det:"Cultive 12 mois/an"},
+  {name:"Céline V.",city:"Marseille",f:"Balcon & Appartement",stars:5,av:"👩",txt:"PousseLab est le seul site qui explique vraiment comment faire en PACA toute l'année.",det:"Récolte de mars à novembre"},
+  {name:"Marc D.",city:"Rennes",f:"Jardin en Famille",stars:5,av:"👨‍🦱",txt:"Mon fils a gagné son pari scolaire : radis en 25 jours. Il est fier comme jamais.",det:"Premier potager en famille"},
+];
+
+const FAQ = [
+  {cat:"La formation",qs:[
+    {q:"Faut-il de l'expérience en jardinage ?",a:"Absolument pas. Nos formations partent de zéro. La plupart de nos élèves n'avaient jamais cultivé avant PousseLab. Le module 1 de chaque formation explique les bases fondamentales."},
+    {q:"Combien de temps par semaine ?",a:"30 minutes à 1 heure suffisent. Les leçons sont courtes (10-15 min) et les actions pratiques rapides. Vous pouvez avancer à votre rythme, les accès sont à vie."},
+    {q:"Je garde l'accès combien de temps ?",a:"À vie. Un paiement unique vous donne un accès permanent aux vidéos, aux guides PDF et à toutes les mises à jour futures de votre formation."},
+    {q:"Y a-t-il une garantie ?",a:"Oui — garantie satisfait ou remboursé 30 jours. Si vous n'êtes pas satisfait pour quelque raison que ce soit dans les 30 jours, nous remboursons intégralement. Aucune question posée."},
+    {q:"Les formations sont-elles en français ?",a:"Oui, toutes les vidéos, guides et supports sont en français. Le site et le support client sont 100% français."},
+  ]},
+  {cat:"Engrais maison",qs:[
+    {q:"Le purin d'ortie est-il vraiment efficace ?",a:"Oui, c'est l'engrais naturel le plus puissant. Riche en azote (stimule la croissance), potassium et oligo-éléments, il est utilisé par les maraîchers biologiques professionnels depuis des siècles."},
+    {q:"Peut-on fabriquer des engrais en appartement ?",a:"Absolument. Marc de café, épluchures de banane, eau de cuisson et coquilles d'œufs sont parfaits en appartement — zéro odeur, zéro encombrement. Le purin d'ortie se fait en extérieur (odeur de fermentation)."},
+    {q:"Peut-on mélanger plusieurs engrais naturels ?",a:"Oui ! La combinaison ortie (azote) + consoude (potassium-phosphore) est la plus puissante. À éviter : cendres de bois + purin d'azote — réaction chimique qui libère l'ammoniaque."},
+    {q:"À quelle fréquence utiliser les engrais maison ?",a:"En saison de croissance (avril-septembre) : 1 fois par semaine. Hors saison ou pour les micropousses en intérieur : 1 fois toutes les 2 semaines. Ajustez selon l'aspect des plantes."},
+  ]},
+  {cat:"Matériel & installation",qs:[
+    {q:"De quelle surface ai-je besoin pour démarrer ?",a:"Un seul mètre carré de balcon suffit pour 3-4 pots et votre première récolte. Avec 3-5m², vous pouvez produire des légumes en quantité significative. L'espace optimal est une terrasse de 10-20m²."},
+    {q:"Quel pot choisir pour les tomates ?",a:"Minimum 15L pour les tomates cerises, 20-40L pour les grosses tomates. Un pot trop petit est la première cause d'échec. L'investissement dans un grand pot est rentabilisé dès la première saison."},
+    {q:"Peut-on jardiner sans lumière directe ?",a:"Oui ! La formation 'Intérieur & Lumière' montre comment cultiver avec des LED horticoles. Herbes, salades, micropousses et même tomates cerises poussent sans fenêtre ensoleillée."},
+  ]},
+  {cat:"Paiement & sécurité",qs:[
+    {q:"Quels moyens de paiement acceptez-vous ?",a:"Toutes les cartes bancaires (Visa, Mastercard, Amex), Apple Pay et Google Pay — via Stripe, certifié PCI-DSS niveau 1. Paiement en 3 fois disponible pour le Pack Complet."},
+    {q:"Le paiement est-il sécurisé ?",a:"Vos données bancaires ne transitent jamais sur nos serveurs. Le paiement est traité directement et exclusivement par Stripe, le leader mondial du paiement en ligne sécurisé."},
+    {q:"Puis-je payer en plusieurs fois ?",a:"Oui, le Pack Complet (297€) est disponible en paiement 3 fois sans frais : 99€ × 3. Option disponible au moment du paiement."},
+  ]},
+];
+
+const MATERIEL = [
+  {title:"Démarrer — Budget 50€",icon:"🌱",items:[
+    {t:"Terreau universel de qualité",d:"Sac 20L — Floralux, Botanic ou Leclerc jardin",free:true},
+    {t:"Perlite horticole",d:"Sac 10L — drainage indispensable",free:true},
+    {t:"Pots 15-20L (x3 minimum)",d:"Plastique suffisant, percé en bas",free:true},
+    {t:"Graines à semer",d:"Tomates cerises, basilic, radis — ~5€",free:true},
+    {t:"Arrosoir 5L avec pomme fine",d:"Embout fin pour semis délicat",free:true},
+  ]},
+  {title:"Engrais maison — 0€",icon:"♻️",items:[
+    {t:"Marc de café usagé",d:"Récupérez après chaque café",free:true},
+    {t:"Coquilles d'œufs",d:"Rincez et séchez avant stockage",free:true},
+    {t:"Épluchures de banane",d:"Macérez 3-5 jours dans l'eau",free:true},
+    {t:"Eau de cuisson refroidie",d:"Après cuisson légumes SANS sel",free:true},
+    {t:"Orties (si accessible)",d:"Purin : le plus efficace des engrais gratuits",free:true},
+  ]},
+  {title:"Hydroponie",icon:"💧",items:[
+    {t:"Bac DWC ou gouttière NFT",d:"Kit 60×30cm — 30-80€ selon modèle",free:false},
+    {t:"Solution nutritive A+B",d:"Canna Hydro, GHE Flora — 20-35€",free:false},
+    {t:"pH-mètre numérique",d:"Essentiel — minimum 15€ de qualité",free:false},
+    {t:"Pompe à air + pierre diffusante",d:"Pour DWC : oxygène les racines",free:false},
+    {t:"Lampe LED full-spectrum",d:"QB 240W ou équivalent — 60-180€",free:false},
+  ]},
+  {title:"Guides PDF",icon:"📄",items:[
+    {t:"Calendrier semis par région A3",d:"8 pages — disponible ci-dessous",free:true},
+    {t:"Recettes d'engrais maison",d:"12 pages — disponible ci-dessous",free:true},
+    {t:"Guide associations de plantes",d:"6 pages — inclus dans les formations",free:false},
+    {t:"Carnet de récoltes",d:"20 pages — inclus dans les formations",free:false},
+  ]},
+];
+
+const COMMUNITY = [
+  {av:"👩",name:"Marie-Claire B.",txt:"Ma première tomate cerise de la saison ! 🍅 Merci pour le conseil sur le substrat.",time:"Il y a 2h",likes:14},
+  {av:"🧔",name:"Julien T.",txt:"Le purin d'ortie a sauvé mes courgettes qui jaunissaient. En 1 semaine, changement spectaculaire !",time:"Il y a 5h",likes:28},
+  {av:"👩‍🦱",name:"Amina K.",txt:"Question : mes feuilles de basilic brunissent par le bas. C'est le soleil ou l'arrosage ?",time:"Il y a 8h",likes:6},
+  {av:"👨",name:"Pierre M.",txt:"Semaine 3 en hydroponie NFT. Les laitues poussent 2x plus vite qu'en terre. Bluffant !",time:"Il y a 12h",likes:41},
+  {av:"👩‍🦳",name:"Sophie L.",txt:"J'ai offert mes courgettes aux voisins du dessus — ils veulent maintenant suivre la formation 😄",time:"Hier",likes:35},
+  {av:"👨‍🦱",name:"Thomas R.",txt:"Retour sur la formation Intérieur : parfaite pour Strasbourg. Je cultive même en janvier !",time:"Hier",likes:19},
+];
+
+const RESOURCES = [
+  {icon:"📅",name:"Calendrier semis",sub:"Région Île-de-France",size:"PDF — 1,2 MB",free:true},
+  {icon:"♻️",name:"8 recettes engrais",sub:"Maison & gratuits",size:"PDF — 0,8 MB",free:true},
+  {icon:"🌿",name:"Guide associations",sub:"Quelles plantes ensemble",size:"PDF — 1,5 MB",free:false},
+  {icon:"📓",name:"Carnet de récoltes",sub:"À imprimer et remplir",size:"PDF — 2,1 MB",free:false},
+  {icon:"💧",name:"Fiche hydroponie",sub:"Dosages NFT/DWC",size:"PDF — 0,9 MB",free:false},
+  {icon:"🗓️",name:"Planner saisonnier",sub:"12 mois de culture",size:"PDF — 1,8 MB",free:false},
+];
+
+const BADGES = [
+  {icon:"🌱",name:"Premier semis",desc:"Votre premier plant semé",earned:true},
+  {icon:"🍅",name:"Première récolte",desc:"Première récolte récoltée",earned:true},
+  {icon:"🔥",name:"7 jours de suite",desc:"Streak de 7 jours",earned:true},
+  {icon:"♻️",name:"Alchimiste",desc:"Premier engrais maison",earned:true},
+  {icon:"⭐",name:"Explorateur",desc:"3 formations commencées",earned:false},
+  {icon:"🏆",name:"Expert PousseLab",desc:"Toutes formations terminées",earned:false},
+  {icon:"👥",name:"Communautaire",desc:"10 posts dans le groupe",earned:false},
+  {icon:"💧",name:"Hydroponiste",desc:"Hydroponie terminée",earned:false},
+];
+
+// ═══════════════════════════════
+// ROUTER / PAGES
+// ═══════════════════════════════
+
+let currentPage = 'home';
+let currentCheckoutItem = null;
+
+function showPage(page, param) {
+  currentPage = page;
+  window.scrollTo(0, 0);
+  const app = document.getElementById('app');
+  
+  // Update nav active states
+  document.querySelectorAll('.nl').forEach(l => l.classList.remove('active'));
+
+  switch(page) {
+    case 'home': app.innerHTML = renderHome(); break;
+    case 'formations': app.innerHTML = renderFormationsPage(); break;
+    case 'engrais': app.innerHTML = renderEngraisPage(); break;
+    case 'guide': app.innerHTML = renderGuidePage(); break;
+    case 'blog': app.innerHTML = renderBlogPage(); break;
+    case 'faq': app.innerHTML = renderFaqPage(); break;
+    case 'materiel': app.innerHTML = renderMaterielPage(); break;
+    case 'dashboard': app.innerHTML = renderDashboard('overview'); bindDash(); break;
+    case 'checkout': currentCheckoutItem = param; app.innerHTML = renderCheckout(param); break;
+    case 'mission': app.innerHTML = renderMission(); break;
+    case 'temoignages': app.innerHTML = renderTemoignagesPage(); break;
+    case 'contact': app.innerHTML = renderContact(); break;
+    case 'cgv': app.innerHTML = renderCGV(); break;
+    default: app.innerHTML = renderHome();
+  }
+
+  // Init guide state after render
+  if (page === 'guide') initGuide();
+  if (page === 'engrais') initEngrais();
+  if (page === 'home') initHome();
+  if (page === 'formations') initFormations();
+  if (page === 'blog') initBlog();
+  if (page === 'faq') initFaq();
+  if (page === 'materiel') initMateriel();
+}
+
+// ═══════════════════════════════
+// HOME
+// ═══════════════════════════════
+
+function renderHome() {
+  return `
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div>
+      <span class="eyebrow">🌱 Formation jardinage en ligne N°1</span>
+      <h1 class="h1">Cultivez vos légumes<br><em>maison, même sans jardin</em></h1>
+      <p class="hero-sub">Formations vidéo, engrais maison 100% gratuits, guide saisonnier par région. Tomates, courgettes, herbes — récoltez dès cet été.</p>
+      <div class="proof-row">
+        <div class="av-stack">
+          <div class="av">👩</div><div class="av">🧔</div><div class="av">👩‍🦱</div><div class="av">👨</div><div class="av">👩‍🦳</div>
+        </div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="proof-txt"><strong>+3 870 élèves</strong> · Note 4.9/5</div>
+        </div>
+      </div>
+      <div class="hbtns">
+        <button class="btn-p" onclick="showPage('formations')">Voir les formations →</button>
+        <button class="btn-s" onclick="showPage('guide')">Guide gratuit 🗓️</button>
+      </div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-img">🍅</div>
+      <div class="hcard-body">
+        <span class="hcard-tag">⚡ Meilleure vente</span>
+        <div class="hcard-title">Balcon & Appartement — 5 modules, 22 leçons</div>
+        <button class="hcard-btn" onclick="showPage('checkout','balcon')">Commencer pour 89€ →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="tbar">
+    <div class="tbc"><span class="tbc-n">3 870</span><div class="tbc-l">Élèves formés</div></div>
+    <div class="tbc"><span class="tbc-n">4.9★</span><div class="tbc-l">Note moyenne</div></div>
+    <div class="tbc"><span class="tbc-n">127€</span><div class="tbc-l">Économies/mois moy.</div></div>
+    <div class="tbc"><span class="tbc-n">8</span><div class="tbc-l">Engrais maison gratuits</div></div>
+    <div class="tbc"><span class="tbc-n">30j</span><div class="tbc-l">Garantie remboursement</div></div>
+  </div>
+
+  <!-- FORMATIONS APERÇU -->
+  <section class="section" id="formations-home">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow g">Nos formations</span>
+        <h2 class="h2">Choisissez votre <em>parcours idéal</em></h2>
+        <p class="lead">5 formations pour balcon, terrasse, intérieur, famille et hydroponie.</p>
+      </div>
+      <div class="form-grid" id="form-grid"></div>
+      <div class="pack-box">
+        <h3>Le Pack <em>PousseLab Complet</em></h3>
+        <p>Les 5 formations + tous les guides PDF + accès au groupe privé + mises à jour à vie.</p>
+        <div class="pack-price">297€</div>
+        <div class="pack-old">soit 645€ si acheté séparément</div>
+        <button class="pack-btn" onclick="openModal('m-pack')">Obtenir le Pack Complet →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGRAIS APERÇU -->
+  <section class="section" style="background:#F0EBE0">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow">♻️ Zéro déchet</span>
+        <h2 class="h2">8 engrais maison <em>100% gratuits</em></h2>
+        <p class="lead">Marc de café, épluchures de banane, purin d'ortie… tout vient de votre cuisine.</p>
+      </div>
+      <div class="eng-grid" id="eng-grid-home"></div>
+      <div style="text-align:center;margin-top:28px">
+        <button class="btn-p" onclick="showPage('engrais')">Voir toutes les recettes →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMOIGNAGES -->
+  <section class="section" style="background:#1E1208">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow inv">⭐ Avis vérifiés</span>
+        <h2 class="h2 inv">Ce que disent nos <em>élèves</em></h2>
+      </div>
+      <div class="temo-grid" id="temo-grid-home"></div>
+    </div>
+  </section>
+
+  ${renderFooter()}`;
+}
+
+function initHome() {
+  // Formations
+  const fg = document.getElementById('form-grid');
+  if (!fg) return;
+  FORMATIONS.forEach(f => {
+    const div = document.createElement('div');
+    div.className = 'fcard';
+    div.innerHTML = formationCardHTML(f);
+    fg.appendChild(div);
+  });
+
+  // Engrais (aperçu 4)
+  const eg = document.getElementById('eng-grid-home');
+  if (eg) ENGRAIS.slice(0,4).forEach(e => {
+    const div = document.createElement('div');
+    div.className = 'ecard';
+    div.innerHTML = engraisCardHTML(e, false);
+    eg.appendChild(div);
+  });
+
+  // Témoignages
+  const tg = document.getElementById('temo-grid-home');
+  if (tg) TEMOIGNAGES.slice(0,4).forEach(t => tg.appendChild(createTemoignageCard(t)));
+}
+
+// ═══════════════════════════════
+// FORMATIONS PAGE
+// ═══════════════════════════════
+
+function renderFormationsPage() {
+  return `
+  <div style="padding-top:60px">
+  <section class="section">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow g">Nos formations</span>
+        <h2 class="h2">Choisissez votre <em>parcours idéal</em></h2>
+        <p class="lead">5 formations complètes pour démarrer quel que soit votre espace. Engrais maison inclus dans chaque module.</p>
+      </div>
+      <div class="form-grid" id="form-grid-page"></div>
+      <div class="pack-box">
+        <h3>Le Pack <em>PousseLab Complet</em></h3>
+        <p>Les 5 formations + tous les guides PDF + accès au groupe privé + mises à jour à vie. La solution complète.</p>
+        <div class="pack-price">297€</div>
+        <div class="pack-old">soit 645€ si acheté séparément</div>
+        <button class="pack-btn" onclick="openModal('m-pack')">Obtenir le Pack Complet →</button>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="background:#1E1208">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow inv">⭐ Avis vérifiés</span>
+        <h2 class="h2 inv">Ce que disent nos <em>élèves</em></h2>
+      </div>
+      <div class="temo-grid" id="temo-grid-form"></div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function initFormations() {
+  const fg = document.getElementById('form-grid-page');
+  if (!fg) return;
+  FORMATIONS.forEach(f => {
+    const div = document.createElement('div');
+    div.className = 'fcard';
+    div.innerHTML = formationCardHTML(f);
+    fg.appendChild(div);
+  });
+  const tg = document.getElementById('temo-grid-form');
+  if (tg) TEMOIGNAGES.forEach(t => tg.appendChild(createTemoignageCard(t)));
+}
+
+function formationCardHTML(f) {
+  return `
+  <div class="fcard-top" style="background:${f.bg}">
+    <span class="fcard-badge">${f.badge}</span>
+    <span class="fcard-emoji">${f.emoji}</span>
+    <div class="fcard-title">${f.title}</div>
+    <div class="fcard-tag">${f.tag}</div>
+    <div><span class="fcard-price">${f.price}€</span><span class="fcard-old">${f.old}€</span></div>
+  </div>
+  <div class="fcard-bottom">
+    <div class="fcard-desc">${f.desc}</div>
+    <div class="fcard-meta">
+      <span>📚 ${f.modules} modules</span>
+      <span>🎬 ${f.lessons} leçons</span>
+      <span>⭐ ${f.rating}</span>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+      ${f.tags.map(t=>`<span style="background:#EAE0CC;padding:3px 9px;border-radius:100px;font-size:10px;font-weight:600;color:#5C4030">${t}</span>`).join('')}
+    </div>
+    <button class="fcard-btn" onclick='openFormModal(${JSON.stringify(f)})'>Voir la formation →</button>
+  </div>`;
+}
+
+function openFormModal(f) {
+  document.getElementById('m-form-title').textContent = `${f.emoji} ${f.title}`;
+  document.getElementById('m-form-body').innerHTML = `
+    <p style="font-size:14px;color:#5C4030;line-height:1.8;margin-bottom:18px">${f.desc}</p>
+    <h4 style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;margin-bottom:10px">Contenu de la formation :</h4>
+    <ul style="list-style:none;margin-bottom:22px">
+      ${f.contenu.map((c,i)=>`<li style="display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #EAE0CC;font-size:13.5px;color:#1E1208"><span style="color:#2E5C26;font-weight:700;min-width:18px">${i+1}</span>${c}</li>`).join('')}
+    </ul>
+    <div style="background:#F7F3EC;border-radius:12px;padding:16px;margin-bottom:18px;display:flex;gap:16px;flex-wrap:wrap">
+      <div style="text-align:center;flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#2E5C26">${f.modules}</div><div style="font-size:11px;color:#5C4030">Modules</div></div>
+      <div style="text-align:center;flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#2E5C26">${f.lessons}</div><div style="font-size:11px;color:#5C4030">Leçons</div></div>
+      <div style="text-align:center;flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#2E5C26">${f.students}</div><div style="font-size:11px;color:#5C4030">Élèves</div></div>
+      <div style="text-align:center;flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#D4850A">${f.rating}★</div><div style="font-size:11px;color:#5C4030">Note</div></div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:#2E5C26;margin-bottom:4px">${f.price}€</div>
+      <div style="font-size:13px;color:#5C4030;text-decoration:line-through;margin-bottom:16px">${f.old}€ prix habituel</div>
+      <button class="btn-p" style="font-size:15px;padding:13px 30px;margin-bottom:10px" onclick="closeModal('m-form');showPage('checkout','${f.id}')">Accéder à la formation →</button>
+      <div style="font-size:11px;color:#5C4030">🔒 Paiement sécurisé · Garantie 30 jours · Accès à vie</div>
+    </div>`;
+  openModal('m-form');
+}
+
+// ═══════════════════════════════
+// ENGRAIS PAGE
+// ═══════════════════════════════
+
+function renderEngraisPage() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow">♻️ Zéro déchet</span>
+    <h1>8 engrais maison <em>100% gratuits</em></h1>
+    <p>Marc de café, épluchures de banane, purin d'ortie… tout ce dont vos plantes ont besoin vient de votre cuisine. Cliquez sur chaque fiche pour voir la recette complète.</p>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div class="eng-grid" id="eng-grid-page"></div>
+    </div>
+  </section>
+  <section class="section" style="background:#F0EBE0">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow g">Guide des associations</span>
+        <h2 class="h2">Comment <em>combiner les engrais</em></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:28px">
+        <div style="background:#FDFAF5;border-radius:14px;padding:20px;border:1.5px solid #EAE0CC">
+          <div style="font-size:24px;margin-bottom:8px">✅</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#1E1208;margin-bottom:8px">Associations recommandées</div>
+          <ul style="font-size:13px;color:#5C4030;line-height:2;padding-left:16px">
+            <li>Ortie + Consoude → NPK complet parfait</li>
+            <li>Marc de café + Coquilles d'œufs → sol équilibré</li>
+            <li>Eau de cuisson + Banane → quotidien sans effort</li>
+            <li>Cendres + Coquilles → protection + calcium</li>
+          </ul>
+        </div>
+        <div style="background:#FDFAF5;border-radius:14px;padding:20px;border:1.5px solid #EAE0CC">
+          <div style="font-size:24px;margin-bottom:8px">⚠️</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#1E1208;margin-bottom:8px">À ne JAMAIS mélanger</div>
+          <ul style="font-size:13px;color:#5C4030;line-height:2;padding-left:16px">
+            <li>Cendres de bois + Purin d'ortie → ammoniaque</li>
+            <li>Marc de café en excès → acidification toxique</li>
+            <li>Eau de cuisson salée → brûle les racines</li>
+          </ul>
+        </div>
+        <div style="background:#FDFAF5;border-radius:14px;padding:20px;border:1.5px solid #EAE0CC">
+          <div style="font-size:24px;margin-bottom:8px">📅</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#1E1208;margin-bottom:8px">Planning hebdomadaire</div>
+          <ul style="font-size:13px;color:#5C4030;line-height:2;padding-left:0;list-style:none">
+            <li>🌿 Lundi : Purin d'ortie (croissance)</li>
+            <li>🍌 Mercredi : Banane/Consoude (floraison)</li>
+            <li>🥚 Vendredi : Coquilles broyées (calcium)</li>
+            <li>☕ Continu : Marc en surface</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function engraisCardHTML(e, showToggle) {
+  return `
+  <div class="ecard-top" style="background:${e.colL}">
+    <span class="ecard-em">${e.emoji}</span>
+    <span class="ecard-cat" style="background:${e.col}">${e.cat}</span>
+    <div class="ecard-name">${e.name}</div>
+    <div class="ecard-diff">${e.diff} · ${e.temps}</div>
+  </div>
+  <div style="padding:12px 20px">
+    <p style="font-size:12.5px;color:#5C4030;line-height:1.7">${e.effet}</p>
+  </div>
+  ${showToggle ? `<button class="ecard-toggle" onclick="toggleRecette('${e.id}')">📋 Voir la recette <span id="arr-${e.id}">▼</span></button>
+  <div class="ecard-recipe" id="recipe-${e.id}">
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;font-weight:700;color:#2E5C26;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Ingrédients</div>
+      <ul style="font-size:12.5px;color:#5C4030;padding-left:16px;line-height:1.9">${e.recette.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;font-weight:700;color:#2E5C26;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Préparation</div>
+      <ol style="font-size:12.5px;color:#5C4030;padding-left:16px;line-height:1.9">${e.recette.etapes.map(et=>`<li style="margin-bottom:4px">${et}</li>`).join('')}</ol>
+    </div>
+    <div style="background:#EAF5E8;border-radius:9px;padding:10px 14px;font-size:12px;color:#2E5C26;border-left:3px solid #2E5C26">
+      💡 <strong>Conseil :</strong> ${e.recette.conseil}
+    </div>
+  </div>` : ''}`;
+}
+
+function initEngrais() {
+  const eg = document.getElementById('eng-grid-page');
+  if (!eg) return;
+  ENGRAIS.forEach(e => {
+    const div = document.createElement('div');
+    div.className = 'ecard';
+    div.innerHTML = engraisCardHTML(e, true);
+    eg.appendChild(div);
+  });
+}
+
+function toggleRecette(id) {
+  const el = document.getElementById('recipe-' + id);
+  const arr = document.getElementById('arr-' + id);
+  const isOpen = el.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.ecard-recipe.open').forEach(r => r.classList.remove('open'));
+  document.querySelectorAll('[id^="arr-"]').forEach(a => a.textContent = '▼');
+  if (!isOpen) {
+    el.classList.add('open');
+    arr.textContent = '▲';
+  }
+}
+
+function openEngraisModal(id) {
+  const e = ENGRAIS.find(x => x.id === id);
+  if (!e) return;
+  document.getElementById('m-engrais-title').textContent = `${e.emoji} ${e.name}`;
+  document.getElementById('m-engrais-body').innerHTML = `
+    <p style="font-size:14px;color:#5C4030;line-height:1.8;margin-bottom:16px">${e.effet}</p>
+    <div style="margin-bottom:16px">
+      <h4 style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;margin-bottom:10px">Ingrédients</h4>
+      <ul style="font-size:13.5px;color:#5C4030;padding-left:18px;line-height:1.9">${e.recette.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+    <div style="margin-bottom:16px">
+      <h4 style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;margin-bottom:10px">Étapes</h4>
+      <ol style="font-size:13.5px;color:#5C4030;padding-left:18px;line-height:1.9">${e.recette.etapes.map(et=>`<li style="margin-bottom:6px">${et}</li>`).join('')}</ol>
+    </div>
+    <div style="background:#EAF5E8;border-radius:12px;padding:14px 18px;font-size:13px;color:#2E5C26;border-left:3px solid #2E5C26">
+      💡 <strong>Conseil d'expert :</strong> ${e.recette.conseil}
+    </div>`;
+  openModal('m-engrais');
+}
+
+// ═══════════════════════════════
+// GUIDE PAGE
+// ═══════════════════════════════
+
+let activeRegion = null;
+let activeSaison = 'printemps';
+let activeVCat = 'all';
+let activeInfog = 'bac';
+
+function renderGuidePage() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow g">Guide gratuit</span>
+    <h1>Quoi cultiver <em>selon votre région ?</em></h1>
+    <p>Calendrier de semis précis, guide légumes complet et infographies des dimensions optimales pour vos bacs et pots.</p>
+  </div>
+
+  <!-- RÉGIONS -->
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow g">6 zones climatiques</span>
+        <h2 class="h2" style="font-size:clamp(20px,3vw,36px)">Trouvez <em>votre région</em></h2>
+      </div>
+      <div class="reg-grid" id="reg-grid"></div>
+    </div>
+  </section>
+
+  <!-- SAISONNIER -->
+  <section class="section" style="background:#F0EBE0">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow">📅 Calendrier</span>
+        <h2 class="h2" style="font-size:clamp(20px,3vw,36px)">Que faire <em>en ce moment ?</em></h2>
+      </div>
+      <div class="saison-tabs" id="saison-tabs"></div>
+      <div class="saison-grid" id="saison-grid"></div>
+    </div>
+  </section>
+
+  <!-- LÉGUMES -->
+  <section class="section">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow g">30+ légumes</span>
+        <h2 class="h2" style="font-size:clamp(20px,3vw,36px)">Fiche <em>de chaque légume</em></h2>
+      </div>
+      <div class="guide-filters" id="veg-filters"></div>
+      <div class="veg-grid" id="veg-grid"></div>
+    </div>
+  </section>
+
+  <!-- INFOGRAPHIES -->
+  <section class="section" style="background:#F0EBE0">
+    <div class="max">
+      <div class="ctr">
+        <span class="eyebrow">📐 Dimensions</span>
+        <h2 class="h2" style="font-size:clamp(20px,3vw,36px)">Bacs et pots — <em>quelle taille choisir ?</em></h2>
+        <p class="lead ctr">Visualisez les dimensions et volumes recommandés pour chaque type de culture.</p>
+      </div>
+      <div class="infog-tabs" id="infog-tabs" style="margin-top:24px"></div>
+      <div class="infog-grid" id="infog-grid"></div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function initGuide() {
+  // Régions
+  const rg = document.getElementById('reg-grid');
+  if (!rg) return;
+  REGIONS.forEach(r => {
+    const div = document.createElement('div');
+    div.className = 'rcard';
+    div.setAttribute('data-id', r.id);
+    div.innerHTML = `
+      <div class="rcard-top" style="background:${r.colL}">
+        <span class="rcard-em">${r.emoji}</span>
+        <div class="rcard-label">${r.label}</div>
+        <div class="rcard-cl">${r.climate}</div>
+      </div>
+      <div style="padding:10px 20px 14px;border-top:1.5px solid #EAE0CC">
+        <div style="font-size:10px;font-weight:700;color:${r.col};background:${r.colL};padding:3px 9px;border-radius:100px;display:inline-block;margin-bottom:6px">${r.frost}</div>
+        <div style="font-size:11px;color:#5C4030">${r.avantage}</div>
+      </div>`;
+    rg.appendChild(div);
+  });
+
+  // Saison tabs
+  const stabs = document.getElementById('saison-tabs');
+  Object.entries(SAISONS).forEach(([key, s]) => {
+    const btn = document.createElement('button');
+    btn.className = 'stab' + (key === activeSaison ? ' on' : '');
+    if (key === activeSaison) btn.style.background = s.col;
+    btn.textContent = s.label;
+    btn.onclick = () => {
+      activeSaison = key;
+      document.querySelectorAll('.stab').forEach(b => {b.classList.remove('on');b.style.background='';});
+      btn.classList.add('on');
+      btn.style.background = s.col;
+      renderSaisonGrid();
+    };
+    stabs.appendChild(btn);
+  });
+  renderSaisonGrid();
+
+  // Veg filters
+  const vfEl = document.getElementById('veg-filters');
+  const CATS = [...new Set(VEGETABLES.map(v => v.cat))];
+  ['Tous', ...CATS].forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'gf' + (c === 'Tous' ? ' on' : '');
+    btn.textContent = c;
+    btn.onclick = () => {
+      activeVCat = c === 'Tous' ? 'all' : c;
+      vfEl.querySelectorAll('.gf').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      renderVegGrid();
+    };
+    vfEl.appendChild(btn);
+  });
+  renderVegGrid();
+
+  // Infog tabs
+  const itabs = document.getElementById('infog-tabs');
+  [{id:'bac',label:'🪵 Bacs potagers'},{id:'pot',label:'🪴 Pots & jardinières'}].forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'itab' + (t.id === activeInfog ? ' on' : '');
+    btn.textContent = t.label;
+    btn.onclick = () => {
+      activeInfog = t.id;
+      itabs.querySelectorAll('.itab').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      renderInfog();
+    };
+    itabs.appendChild(btn);
+  });
+  renderInfog();
+}
+
+function renderSaisonGrid() {
+  const sg = document.getElementById('saison-grid');
+  if (!sg) return;
+  const s = SAISONS[activeSaison];
+  sg.innerHTML = '';
+  s.items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'scard';
+    div.innerHTML = `
+      <div class="scard-veg">${item.emoji}</div>
+      <div class="scard-name">${item.name}</div>
+      <span class="scard-act" style="color:${item.actionCol};background:${item.actionBg}">${item.action}</span>
+      <div class="scard-tip">${item.tip}</div>`;
+    sg.appendChild(div);
+  });
+}
+
+function renderVegGrid() {
+  const vg = document.getElementById('veg-grid');
+  if (!vg) return;
+  vg.innerHTML = '';
+  const list = activeVCat === 'all' ? VEGETABLES : VEGETABLES.filter(v => v.cat === activeVCat);
+  list.forEach(v => {
+    const div = document.createElement('div');
+    div.className = 'vcard';
+    div.innerHTML = `
+      <span class="vcard-em">${v.emoji}</span>
+      <div class="vcard-name">${v.name}</div>
+      <div class="vcard-cat">${v.cat}</div>
+      <div class="vcard-detail">Difficulté : ${v.diff}</div>
+      <div class="vcard-detail">Semis : ${v.semis}</div>`;
+    div.onclick = () => openVegModal(v);
+    vg.appendChild(div);
+  });
+}
+
+function openVegModal(v) {
+  document.getElementById('m-veg-title').textContent = `${v.emoji} ${v.name}`;
+  document.getElementById('m-veg-body').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px">
+      ${[
+        ['Catégorie',v.cat],['Difficulté',v.diff],['Semis',v.semis],['Repiquage',v.repique],
+        ['Récolte',v.recolte],['Exposition',v.expo],['Arrosage',v.arrosage],['Engrais',v.engrais]
+      ].map(([k,val])=>`<div style="background:#F7F3EC;border-radius:9px;padding:10px 12px"><div style="font-size:10px;font-weight:700;color:#B84E1E;text-transform:uppercase;letter-spacing:.05em">${k}</div><div style="font-size:13px;font-weight:600;color:#1E1208;margin-top:2px">${val}</div></div>`).join('')}
+    </div>
+    <div style="background:#F7F3EC;border-radius:9px;padding:12px 16px;margin-bottom:14px">
+      <div style="font-size:10px;font-weight:700;color:#2E5C26;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Pot recommandé</div>
+      <div style="font-size:13px;font-weight:600;color:#1E1208">${v.pot}</div>
+    </div>
+    <div style="background:#EAF5E8;border-radius:9px;padding:12px 16px;border-left:3px solid #2E5C26">
+      <div style="font-size:10px;font-weight:700;color:#2E5C26;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">💡 Conseil expert</div>
+      <div style="font-size:13px;color:#5C4030;line-height:1.7">${v.conseil}</div>
+    </div>`;
+  openModal('m-veg');
+}
+
+function renderInfog() {
+  const ig = document.getElementById('infog-grid');
+  if (!ig) return;
+  ig.innerHTML = '';
+  const data = activeInfog === 'bac' ? BAC_DATA : POT_DATA;
+  data.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'icard';
+    const dims = item.dims;
+    let visual = '';
+    let dimLabel = '';
+    if (dims.l) {
+      const w = Math.min(100, Math.max(50, dims.l / 2));
+      const h = Math.min(60, Math.max(30, (dims.w || 40) / 2));
+      const depth = Math.min(40, Math.max(15, dims.h / 1.5));
+      visual = `<div class="icard-shape" style="width:${w}px;height:${h}px;background:#2E5C26;font-size:11px">${dims.l}×${dims.w||'–'}</div>`;
+      dimLabel = `L${dims.l}×l${dims.w||'?'}×H${dims.h}cm`;
+    } else {
+      const d = Math.min(80, Math.max(40, dims.d * 1.5));
+      visual = `<div class="icard-shape" style="width:${d}px;height:${d}px;background:#2E5C26;border-radius:50%;font-size:11px">∅${dims.d}</div>`;
+      dimLabel = `Ø${dims.d}cm × H${dims.h}cm`;
+    }
+    div.innerHTML = `
+      <div class="icard-top">
+        <div class="icard-vis">${visual}<div class="icard-dim">${dimLabel}<br>${item.vol}</div></div>
+        <div class="icard-info">
+          <div class="icard-name">${item.name}</div>
+          <div class="icard-tags">
+            ${item.mat ? `<span class="itag">${item.mat}</span>` : ''}
+            <span class="itag">${item.cost || item.vol}</span>
+          </div>
+          <div class="icard-vol" style="font-size:12px;color:#5C4030;line-height:1.6">${item.note}</div>
+        </div>
+      </div>
+      <div class="icard-vegs">
+        ${item.forVeg.map(v=>`<span class="itag">${v}</span>`).join('')}
+      </div>`;
+    ig.appendChild(div);
+  });
+}
+
+// ═══════════════════════════════
+// BLOG PAGE
+// ═══════════════════════════════
+
+function renderBlogPage() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow">📰 Conseils</span>
+    <h1>Le blog <em>PousseLab</em></h1>
+    <p>Techniques, saisonnier, économies — tout ce qu'il faut savoir pour jardiner intelligemment.</p>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div class="blog-grid" id="blog-grid-page"></div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function initBlog() {
+  const bg = document.getElementById('blog-grid-page');
+  if (!bg) return;
+  BLOG.forEach(b => bg.appendChild(createBlogCard(b)));
+}
+
+function createBlogCard(b) {
+  const div = document.createElement('div');
+  div.className = 'bcard';
+  div.innerHTML = `
+    <img class="bcard-img" src="${b.img}" alt="${b.title}" loading="lazy" onerror="this.style.background='#EAE0CC';this.src=''"/>
+    <div class="bcard-body">
+      <div class="bcard-cat">${b.cat}</div>
+      <div class="bcard-title">${b.title}</div>
+      <div class="bcard-exc">${b.excerpt}</div>
+      <div class="bcard-foot"><span>${b.date}</span><span>📖 ${b.readTime}</span></div>
+    </div>`;
+  div.onclick = () => openBlogModal(b);
+  return div;
+}
+
+function openBlogModal(b) {
+  document.getElementById('m-blog-title').textContent = b.title;
+  document.getElementById('m-blog-body').innerHTML = `
+    <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+      <span style="font-size:11px;font-weight:700;color:#B84E1E;background:#F5E8D8;padding:3px 9px;border-radius:100px">${b.cat}</span>
+      <span style="font-size:11px;color:#5C4030">${b.date} · 📖 ${b.readTime}</span>
+    </div>
+    <div class="prose">${b.full}</div>`;
+  openModal('m-blog');
+}
+
+// ═══════════════════════════════
+// FAQ PAGE
+// ═══════════════════════════════
+
+function renderFaqPage() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow">❓ Vos questions</span>
+    <h1>Questions <em>fréquentes</em></h1>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function initFaq() {
+  const fl = document.getElementById('faq-list');
+  if (!fl) return;
+  FAQ.forEach(cat => {
+    const catEl = document.createElement('div');
+    catEl.innerHTML = `<div class="faq-cat">${cat.cat}</div>`;
+    cat.qs.forEach(item => {
+      const itemEl = document.createElement('div');
+      itemEl.className = 'faq-item';
+      itemEl.innerHTML = `<button class="faq-q">${item.q}<span>+</span></button><div class="faq-a">${item.a}</div>`;
+      itemEl.querySelector('.faq-q').onclick = function() {
+        const a = itemEl.querySelector('.faq-a');
+        const isOpen = a.classList.contains('open');
+        document.querySelectorAll('.faq-a').forEach(x => x.classList.remove('open'));
+        document.querySelectorAll('.faq-q span').forEach(x => x.textContent = '+');
+        if (!isOpen) { a.classList.add('open'); this.querySelector('span').textContent = '−'; }
+      };
+      catEl.appendChild(itemEl);
+    });
+    fl.appendChild(catEl);
+  });
+}
+
+// ═══════════════════════════════
+// MATÉRIEL PAGE
+// ═══════════════════════════════
+
+function renderMaterielPage() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow g">Liste complète</span>
+    <h1>Le matériel <em>essentiel</em></h1>
+    <p>Ce qu'il vous faut vraiment pour démarrer — sans dépenser inutilement. Les points verts = gratuit ou récupérable.</p>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div class="mat-grid" id="mat-grid-page"></div>
+      <div style="margin-top:36px;background:#EAF5E8;border-radius:18px;padding:32px;border:1.5px solid rgba(46,92,38,.2)">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#1E1208;margin-bottom:12px">📥 Télécharger les guides gratuits</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:20px">
+          ${[
+            {icon:'📅',name:'Calendrier semis par région',sub:'Format A3 imprimable, 8 pages'},
+            {icon:'♻️',name:'8 recettes engrais maison',sub:'Toutes les recettes détaillées, 12 pages'},
+          ].map(r=>`
+            <div style="background:#FDFAF5;border-radius:12px;padding:16px;border:1.5px solid #EAE0CC;text-align:center">
+              <div style="font-size:28px;margin-bottom:8px">${r.icon}</div>
+              <div style="font-size:13px;font-weight:700;color:#1E1208;margin-bottom:4px">${r.name}</div>
+              <div style="font-size:11px;color:#5C4030;margin-bottom:12px">${r.sub}</div>
+              <button onclick="showToast('📥 Téléchargement démarré !')" style="background:#2E5C26;color:#fff;border:none;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;width:100%">Télécharger gratuit</button>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function initMateriel() {
+  const mg = document.getElementById('mat-grid-page');
+  if (!mg) return;
+  MATERIEL.forEach(m => {
+    const div = document.createElement('div');
+    div.className = 'mcat';
+    div.innerHTML = `
+      <div class="mcat-head"><span class="mcat-icon">${m.icon}</span><div class="mcat-title">${m.title}</div></div>
+      ${m.items.map(i=>`
+        <div class="mitem">
+          <div class="mitem-dot" style="background:${i.free?'#2E5C26':'#B84E1E'}"></div>
+          <div><div class="mitem-t">${i.t}</div><div class="mitem-d">${i.d}</div></div>
+        </div>`).join('')}`;
+    mg.appendChild(div);
+  });
+}
+
+// ═══════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════
+
+let dashSection = 'overview';
+
+function renderDashboard(section) {
+  const nav = [
+    {id:'overview',icon:'📊',label:'Vue d\'ensemble'},
+    {id:'courses',icon:'🎬',label:'Mes formations'},
+    {id:'community',icon:'👥',label:'Communauté'},
+    {id:'resources',icon:'📥',label:'Ressources'},
+    {id:'badges',icon:'🏆',label:'Badges'},
+  ];
+  dashSection = section || 'overview';
+  return `
+  <div class="dash-layout">
+    <div class="dash-sidebar">
+      <div class="dash-logo">Pousse<em>Lab</em></div>
+      ${nav.map(n=>`<div class="dash-nav-item${n.id===dashSection?' active':''}" onclick="switchDash('${n.id}')"><span class="dash-nav-icon">${n.icon}</span>${n.label}</div>`).join('')}
+      <div class="dash-nav-section">Compte</div>
+      <div class="dash-nav-item" onclick="showPage('home')"><span class="dash-nav-icon">🏠</span>Retour au site</div>
+      <div class="dash-nav-item" onclick="showPage('contact')"><span class="dash-nav-icon">✉️</span>Support</div>
+    </div>
+    <div class="dash-content" id="dash-content">
+      ${getDashContent()}
+    </div>
+  </div>`;
+}
+
+function switchDash(section) {
+  dashSection = section;
+  document.querySelectorAll('.dash-nav-item').forEach((el,i) => {
+    const ids = ['overview','courses','community','resources','badges','home','contact'];
+    el.classList.toggle('active', ids[i] === section);
+  });
+  document.getElementById('dash-content').innerHTML = getDashContent();
+}
+
+function getDashContent() {
+  switch(dashSection) {
+    case 'overview': return `
+      <div class="dash-header">
+        <div class="dash-title">Bonjour, Jardini·ère 🌱</div>
+        <div class="dash-sub">Votre progression cette semaine</div>
+      </div>
+      <div class="dash-stats">
+        <div class="dstat"><div class="dstat-val">65%</div><div class="dstat-lbl">Formation en cours</div></div>
+        <div class="dstat"><div class="dstat-val">7</div><div class="dstat-lbl">Jours de streak 🔥</div></div>
+        <div class="dstat"><div class="dstat-val">4</div><div class="dstat-lbl">Badges obtenus</div></div>
+        <div class="dstat"><div class="dstat-val">90€</div><div class="dstat-lbl">Économies ce mois</div></div>
+      </div>
+      <div style="background:#FDFAF5;border-radius:14px;padding:20px;border:1.5px solid #EAE0CC;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#1E1208">🏙️ Balcon & Appartement</div>
+          <span style="font-size:13px;color:#2E5C26;font-weight:700">65%</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill" style="width:65%"></div></div>
+        <div style="margin-top:10px;font-size:12px;color:#5C4030">Module 4 en cours : Salades et légumes-feuilles</div>
+        <button class="btn-g" style="margin-top:14px;font-size:13px;padding:8px 20px" onclick="switchDash('courses')">Reprendre la formation →</button>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#1E1208;margin-bottom:12px">Activité récente</div>
+      <div class="activity-list">
+        ${COMMUNITY.slice(0,3).map(a=>`
+          <div class="act-item">
+            <div class="act-avatar">${a.av}</div>
+            <div class="act-text"><strong>${a.name}</strong> : ${a.txt}</div>
+            <div class="act-time">${a.time}</div>
+          </div>`).join('')}
+      </div>`;
+
+    case 'courses': return `
+      <div class="dash-header">
+        <div class="dash-title">Mes formations</div>
+        <div class="dash-sub">5 formations disponibles</div>
+      </div>
+      <div class="course-list">
+        ${FORMATIONS.map(f=>`
+          <div class="citem">
+            <div class="citem-emoji">${f.emoji}</div>
+            <div class="citem-info">
+              <div class="citem-title">${f.title}</div>
+              <div class="citem-prog">${f.progress > 0 ? `${f.progress}% terminé · Module ${Math.ceil(f.progress/100*f.modules)}/${f.modules}` : 'Non commencé'}</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:${f.progress}%"></div></div>
+            </div>
+            <button class="citem-btn" onclick="${f.progress > 0 ? '' : `showPage('checkout','${f.id}')`}">${f.progress > 0 ? 'Continuer →' : 'Débloquer'}</button>
+          </div>`).join('')}
+      </div>`;
+
+    case 'community': return `
+      <div class="dash-header">
+        <div class="dash-title">Communauté</div>
+        <div class="dash-sub">3 870 jardiniers actifs</div>
+      </div>
+      <div style="background:#FDFAF5;border-radius:14px;padding:16px;border:1.5px solid #EAE0CC;margin-bottom:20px;display:flex;gap:12px">
+        <input style="flex:1;border:1.5px solid #EAE0CC;border-radius:9px;padding:10px 14px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;outline:none" placeholder="Partagez votre expérience ou posez une question…"/>
+        <button class="btn-g" style="padding:10px 18px;font-size:13px" onclick="showToast('✅ Message publié !')">Publier</button>
+      </div>
+      <div class="activity-list">
+        ${COMMUNITY.map(a=>`
+          <div class="act-item">
+            <div class="act-avatar">${a.av}</div>
+            <div style="flex:1">
+              <div class="act-text"><strong>${a.name}</strong> — ${a.txt}</div>
+              <div style="display:flex;gap:12px;margin-top:6px">
+                <button onclick="showToast('❤️ Aimé !')" style="background:none;border:none;font-size:12px;color:#5C4030;cursor:pointer">❤️ ${a.likes}</button>
+                <button onclick="showToast('💬 Répondre — fonctionnalité bientôt disponible')" style="background:none;border:none;font-size:12px;color:#5C4030;cursor:pointer">💬 Répondre</button>
+              </div>
+            </div>
+            <div class="act-time">${a.time}</div>
+          </div>`).join('')}
+      </div>`;
+
+    case 'resources': return `
+      <div class="dash-header">
+        <div class="dash-title">Ressources</div>
+        <div class="dash-sub">Guides PDF et documents</div>
+      </div>
+      <div class="resource-grid">
+        ${RESOURCES.map(r=>`
+          <div class="res-item">
+            <div class="res-icon">${r.icon}</div>
+            <div class="res-name">${r.name}</div>
+            <div style="font-size:11px;color:#5C4030;margin-bottom:4px">${r.sub}</div>
+            <div class="res-size">${r.size}</div>
+            <button class="res-btn" onclick="showToast('${r.free ? '📥 Téléchargement démarré !' : '🔒 Inclus dans vos formations'}')">${r.free ? 'Télécharger' : '🔒 Dans la formation'}</button>
+          </div>`).join('')}
+      </div>`;
+
+    case 'badges': return `
+      <div class="dash-header">
+        <div class="dash-title">Vos badges</div>
+        <div class="dash-sub">4/8 badges obtenus</div>
+      </div>
+      <div class="badge-grid">
+        ${BADGES.map(b=>`
+          <div class="badge${b.earned?' earned':''}">
+            <div class="badge-icon">${b.earned ? b.icon : '🔒'}</div>
+            <div class="badge-name">${b.name}</div>
+            <div class="badge-desc">${b.desc}</div>
+            ${b.earned ? '<div style="font-size:9px;color:#D4850A;font-weight:700;margin-top:4px">Obtenu ✓</div>' : ''}
+          </div>`).join('')}
+      </div>`;
+
+    default: return '';
+  }
+}
+
+function bindDash() {}
+
+// ═══════════════════════════════
+// CHECKOUT
+// ═══════════════════════════════
+
+function renderCheckout(itemId) {
+  let item, price, title;
+  if (itemId === 'pack') {
+    item = {emoji:'🌿',title:'Pack PousseLab Complet',price:297,old:645};
+  } else {
+    item = FORMATIONS.find(f => f.id === itemId) || FORMATIONS[0];
+  }
+  
+  return `
+  <div style="padding-top:80px;padding-bottom:60px;min-height:100vh;background:#F0EBE0">
+    <div style="max-width:800px;margin:0 auto;padding:0 24px">
+      <button onclick="history.back()" style="background:none;border:none;font-size:13px;font-weight:600;color:#5C4030;cursor:pointer;margin-bottom:20px;display:flex;align-items:center;gap:6px">← Retour</button>
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start">
+        <div>
+          <div style="background:#FDFAF5;border-radius:18px;padding:28px;border:1.5px solid #EAE0CC;margin-bottom:20px">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#1E1208;margin-bottom:4px">${item.emoji} ${item.title}</div>
+            <div style="font-size:13px;color:#5C4030;margin-bottom:20px">Accès immédiat · À vie · Garantie 30 jours</div>
+            <div style="display:flex;gap:24px;font-size:13px;color:#5C4030;flex-wrap:wrap">
+              ${item.modules ? `<span>📚 ${item.modules} modules</span><span>🎬 ${item.lessons} leçons</span>` : '<span>📚 5 formations complètes</span>'}
+              <span>⭐ ${item.rating || 4.9}/5</span>
+            </div>
+          </div>
+
+          <div class="checkout-box">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:#1E1208;margin-bottom:18px">Informations de paiement</div>
+            
+            <div class="form-field"><label>Email</label><input type="email" id="co-email" placeholder="votre@email.com"/></div>
+            <div class="form-field"><label>Nom sur la carte</label><input type="text" id="co-name" placeholder="Prénom NOM"/></div>
+            
+            <div style="background:#F7F3EC;border-radius:10px;padding:16px;margin-bottom:16px;border:1.5px solid #EAE0CC">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+                <div style="font-size:12px;font-weight:700;color:#1E1208">Numéro de carte</div>
+                <div style="display:flex;gap:4px;margin-left:auto">
+                  <div style="background:#EAE0CC;border-radius:3px;padding:2px 6px;font-size:9px;font-weight:700;color:#5C4030">VISA</div>
+                  <div style="background:#EAE0CC;border-radius:3px;padding:2px 6px;font-size:9px;font-weight:700;color:#5C4030">MC</div>
+                  <div style="background:#EAE0CC;border-radius:3px;padding:2px 6px;font-size:9px;font-weight:700;color:#5C4030">AMEX</div>
+                </div>
+              </div>
+              <input id="co-card" style="width:100%;border:1.5px solid #EAE0CC;border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:#fff;color:#1E1208;letter-spacing:2px" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"/>
+              <div class="card-row" style="margin-top:12px">
+                <input id="co-exp" style="border:1.5px solid #EAE0CC;border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:#fff;color:#1E1208" placeholder="MM/AA" maxlength="5" oninput="formatExp(this)"/>
+                <input id="co-cvv" style="border:1.5px solid #EAE0CC;border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:#fff;color:#1E1208" placeholder="CVV" maxlength="4"/>
+              </div>
+            </div>
+
+            <button class="pay-btn" onclick="processPay(${item.price})">🔒 Payer ${item.price}€ maintenant</button>
+            <div class="pay-security">
+              🔒 Paiement 100% sécurisé par Stripe · PCI-DSS Niveau 1<br>
+              Vos données bancaires ne transitent jamais sur nos serveurs.
+            </div>
+            <div style="margin-top:16px;font-size:12px;color:#5C4030;text-align:center">Garantie satisfait ou remboursé 30 jours · Accès immédiat après paiement</div>
+          </div>
+        </div>
+
+        <div style="background:#FDFAF5;border-radius:18px;padding:24px;border:1.5px solid #EAE0CC;position:sticky;top:80px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#1E1208;margin-bottom:16px">Récapitulatif</div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:#5C4030;margin-bottom:8px">
+            <span>${item.emoji} ${item.title}</span>
+            <span>${item.price}€</span>
+          </div>
+          ${item.old ? `<div style="display:flex;justify-content:space-between;font-size:13px;color:#2E5C26;font-weight:600;margin-bottom:12px"><span>Économie</span><span>-${item.old - item.price}€</span></div>` : ''}
+          <div style="border-top:1px solid #EAE0CC;padding-top:12px;display:flex;justify-content:space-between;font-size:16px;font-weight:800;color:#1E1208;margin-bottom:16px">
+            <span>Total</span><span>${item.price}€</span>
+          </div>
+          <div style="background:#EAF5E8;border-radius:10px;padding:12px;font-size:12px;color:#2E5C26;line-height:1.7">
+            ✅ Accès immédiat<br>✅ Accès à vie<br>✅ Garantie 30 jours<br>✅ Support par email
+          </div>
+          ${itemId !== 'pack' ? `<div style="margin-top:14px;padding:12px;background:#F5E8D8;border-radius:10px;font-size:12px;color:#B84E1E;text-align:center;cursor:pointer" onclick="closeModal('m-form');showPage('checkout','pack')"><strong>💡 Pack Complet (5 formations)</strong><br>297€ au lieu de 645€ → économisez 348€</div>` : ''}
+        </div>
+      </div>
+    </div>
+  </div>
+  ${renderFooter()}`;
+}
+
+function formatCard(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1 ').trim();
+}
+
+function formatExp(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,4);
+  if (v.length >= 3) v = v.substring(0,2) + '/' + v.substring(2);
+  el.value = v;
+}
+
+function processPay(price) {
+  const email = document.getElementById('co-email')?.value;
+  const name = document.getElementById('co-name')?.value;
+  const card = document.getElementById('co-card')?.value;
+  const exp = document.getElementById('co-exp')?.value;
+  const cvv = document.getElementById('co-cvv')?.value;
+
+  if (!email || !name || !card || !exp || !cvv) {
+    showToast('⚠️ Veuillez remplir tous les champs');
+    return;
+  }
+  
+  // Simulate payment
+  const btn = document.querySelector('.pay-btn');
+  if (btn) {
+    btn.textContent = '⏳ Traitement en cours…';
+    btn.disabled = true;
+    setTimeout(() => {
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;background:#F0EBE0">
+          <div style="max-width:500px;text-align:center;background:#FDFAF5;border-radius:24px;padding:48px;border:1.5px solid #EAE0CC;box-shadow:0 16px 48px rgba(30,18,8,.1)">
+            <div style="font-size:64px;margin-bottom:16px">✅</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#1E1208;margin-bottom:12px">Paiement confirmé !</h2>
+            <p style="font-size:14px;color:#5C4030;line-height:1.8;margin-bottom:24px">Votre accès à la formation est immédiatement disponible. Un email de confirmation a été envoyé à <strong>${email}</strong>.</p>
+            <div style="background:#EAF5E8;border-radius:12px;padding:16px;margin-bottom:24px;font-size:13px;color:#2E5C26;line-height:1.8">
+              ✅ Formation débloquée<br>✅ Guides PDF disponibles<br>✅ Accès à vie activé
+            </div>
+            <button class="btn-p" style="font-size:15px;padding:13px 32px;width:100%;justify-content:center" onclick="showPage('dashboard')">Accéder à mes formations →</button>
+          </div>
+        </div>
+        ${renderFooter()}`;
+    }, 2000);
+  }
+}
+
+// ═══════════════════════════════
+// PAGES SECONDAIRES
+// ═══════════════════════════════
+
+function renderMission() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow g">Notre mission</span>
+    <h1>Remettre <em>le potager au cœur</em> des foyers</h1>
+    <p>Chez PousseLab, nous croyons que tout le monde peut cultiver ses légumes, même sans jardin, même sans expérience.</p>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div class="prose">
+        <p>PousseLab est né d'un constat simple : nous avons perdu le lien avec notre nourriture. En deux générations, nous sommes passés de familles qui jardinent à des consommateurs qui ignorent comment pousse une tomate.</p>
+        <h3>Notre conviction</h3>
+        <p>Cultiver ses légumes, c'est reprendre le contrôle. Contrôle sur ce qu'on mange (zéro pesticide, récolté à maturité), sur son budget (127€ d'économies/mois en moyenne) et sur son empreinte écologique (zéro emballage, zéro kilomètre).</p>
+        <h3>Ce que nous faisons</h3>
+        <p>Nous créons des formations vidéo accessibles, précises et progressives. Nous partageons gratuitement tout ce qu'il faut savoir sur les engrais maison, les calendriers de semis et le matériel adapté. Notre communauté de 3 870 jardiniers s'entraide au quotidien.</p>
+        <h3>Les chiffres qui nous motivent</h3>
+        <p>En 2025, nos élèves ont produit l'équivalent de <strong>48 tonnes de légumes</strong> sur leurs balcons, terrasses et appartements en France. Chaque pot planté est un pesticide de moins dans nos assiettes.</p>
+        <h3>L'équipe</h3>
+        <p>PousseLab est fondé par des passionnés de jardinage naturel et de pédagogie en ligne. Notre équipe de formateurs compte des maraîchers biologiques, des agronomes et des jardiniers amateurs devenus experts après des années de pratique.</p>
+      </div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function renderTemoignagesPage() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow">⭐ Avis vérifiés</span>
+    <h1>Ils ont <em>transformé leur balcon</em></h1>
+    <p>8 témoignages d'élèves PousseLab — des vraies personnes, de vrais résultats.</p>
+  </div>
+  <section class="section" style="padding-top:0;background:#1E1208">
+    <div class="max">
+      <div class="temo-grid" id="temo-full"></div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+  setTimeout(() => {
+    const tg = document.getElementById('temo-full');
+    if (tg) TEMOIGNAGES.forEach(t => tg.appendChild(createTemoignageCard(t)));
+  }, 0);
+}
+
+function renderContact() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow">✉️ Contact</span>
+    <h1>Nous <em>contacter</em></h1>
+    <p>Une question, un problème technique, ou simplement envie de partager votre belle récolte ? Nous répondons en moins de 24h.</p>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
+        <div>
+          <div class="contact-form">
+            <div class="form-field"><label>Votre prénom</label><input type="text" id="ct-prenom" placeholder="Marie"/></div>
+            <div class="form-field"><label>Email</label><input type="email" id="ct-email" placeholder="votre@email.com"/></div>
+            <div class="form-field"><label>Sujet</label>
+              <select id="ct-sujet" style="width:100%;border:1.5px solid #EAE0CC;border-radius:9px;padding:10px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1E1208;outline:none">
+                <option>Question sur une formation</option>
+                <option>Problème technique</option>
+                <option>Remboursement</option>
+                <option>Partenariat</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="form-field"><label>Message</label>
+              <textarea id="ct-msg" style="width:100%;border:1.5px solid #EAE0CC;border-radius:9px;padding:10px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1E1208;outline:none;resize:vertical;min-height:120px" placeholder="Votre message…"></textarea>
+            </div>
+            <button class="btn-p" style="width:100%;justify-content:center" onclick="sendContact()">Envoyer le message →</button>
+          </div>
+        </div>
+        <div>
+          <div style="background:#FDFAF5;border-radius:16px;padding:24px;border:1.5px solid #EAE0CC;margin-bottom:16px">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#1E1208;margin-bottom:14px">Autres façons de nous joindre</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C4030"><span style="font-size:20px">📧</span> support@pousselab.fr</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C4030"><span style="font-size:20px">⏱️</span> Réponse en moins de 24h ouvrées</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C4030"><span style="font-size:20px">💬</span> Chat Flora (bouton vert en bas à droite)</div>
+            </div>
+          </div>
+          <div style="background:#EAF5E8;border-radius:16px;padding:24px;border:1.5px solid rgba(46,92,38,.2)">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#1E1208;margin-bottom:12px">Questions fréquentes</div>
+            <div style="font-size:13px;color:#5C4030;line-height:1.8">
+              Avant de nous contacter, consultez notre <button onclick="showPage('faq')" style="background:none;border:none;color:#2E5C26;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;text-decoration:underline">FAQ complète</button> — votre question est probablement déjà répondue !
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+function sendContact() {
+  const email = document.getElementById('ct-email')?.value;
+  if (!email) { showToast('⚠️ Veuillez remplir tous les champs'); return; }
+  showToast('✅ Message envoyé ! Réponse sous 24h.');
+}
+
+function renderCGV() {
+  return `
+  <div style="padding-top:60px">
+  <div class="page-hero">
+    <span class="eyebrow">📄 Légal</span>
+    <h1>Conditions générales <em>de vente</em></h1>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="max">
+      <div class="prose">
+        <h3>1. Objet</h3>
+        <p>Les présentes conditions générales de vente régissent les relations entre PousseLab et ses clients pour l'achat de formations en ligne.</p>
+        <h3>2. Prix</h3>
+        <p>Les prix sont indiqués en euros TTC. PousseLab se réserve le droit de modifier ses prix à tout moment, les prix applicables étant ceux en vigueur au moment de la commande.</p>
+        <h3>3. Paiement</h3>
+        <p>Le paiement est sécurisé via Stripe (PCI-DSS Niveau 1). Nous acceptons Visa, Mastercard, American Express, Apple Pay et Google Pay.</p>
+        <h3>4. Accès aux formations</h3>
+        <p>L'accès à la formation est activé immédiatement après confirmation du paiement. L'accès est accordé à vie, avec toutes les mises à jour futures incluses.</p>
+        <h3>5. Droit de rétractation</h3>
+        <p>Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux contenus numériques fournis sur support immatériel dont l'exécution a commencé. Toutefois, PousseLab applique une garantie commerciale de 30 jours satisfait ou remboursé.</p>
+        <h3>6. Garantie 30 jours</h3>
+        <p>Si vous n'êtes pas satisfait dans les 30 jours suivant votre achat, contactez-nous à support@pousselab.fr pour un remboursement intégral, sans justification requise.</p>
+        <h3>7. Propriété intellectuelle</h3>
+        <p>Le contenu des formations (vidéos, guides, textes, images) est la propriété exclusive de PousseLab. Toute reproduction ou distribution sans autorisation est interdite.</p>
+        <h3>8. Données personnelles</h3>
+        <p>Vos données sont collectées uniquement pour la gestion de votre accès. Elles ne sont jamais vendues à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression.</p>
+        <h3>9. Juridiction</h3>
+        <p>Les présentes CGV sont soumises au droit français. En cas de litige, les tribunaux de Paris sont seuls compétents.</p>
+      </div>
+    </div>
+  </section>
+  </div>
+  ${renderFooter()}`;
+}
+
+// ═══════════════════════════════
+// FOOTER
+// ═══════════════════════════════
+
+function renderFooter() {
+  return `
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Pousse<em>Lab</em></div>
+        <p class="foot-desc">La référence du jardinage potager en appartement et maison, pour manger sainement et économiser sur ses courses.</p>
+      </div>
+      <div>
+        <div class="foot-head">Formations</div>
+        ${FORMATIONS.map(f=>`<button class="foot-link" onclick="showPage('formations')">${f.title}</button>`).join('')}
+      </div>
+      <div>
+        <div class="foot-head">Ressources</div>
+        <button class="foot-link" onclick="showPage('engrais')">Engrais maison</button>
+        <button class="foot-link" onclick="showPage('guide')">Guide saisonnier</button>
+        <button class="foot-link" onclick="showPage('blog')">Blog</button>
+        <button class="foot-link" onclick="showPage('materiel')">Matériel</button>
+        <button class="foot-link" onclick="showPage('temoignages')">Témoignages</button>
+      </div>
+      <div>
+        <div class="foot-head">PousseLab</div>
+        <button class="foot-link" onclick="showPage('mission')">Notre mission</button>
+        <button class="foot-link" onclick="showPage('faq')">FAQ</button>
+        <button class="foot-link" onclick="showPage('contact')">Contact</button>
+        <button class="foot-link" onclick="showPage('cgv')">CGV</button>
+        <button class="foot-link" onclick="showPage('checkout','pack')">Pack Complet</button>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 PousseLab — Tous droits réservés</span>
+      <span>🔒 Paiement sécurisé Stripe · PCI-DSS Niveau 1</span>
+    </div>
+  </footer>`;
+}
+
+// ═══════════════════════════════
+// HELPERS
+// ═══════════════════════════════
+
+function createTemoignageCard(t) {
+  const div = document.createElement('div');
+  div.className = 'tcard';
+  div.innerHTML = `
+    <div class="tcard-head">
+      <div class="tcard-av">${t.av}</div>
+      <div><div class="tcard-name">${t.name}</div><div class="tcard-city">${t.city} · ${t.f}</div></div>
+    </div>
+    <div class="tcard-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
+    <p class="tcard-txt">"${t.txt}"</p>
+    <span class="tcard-det">${t.det}</span>`;
+  return div;
+}
+
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function doLogin() {
+  const email = document.getElementById('login-email')?.value;
+  if (!email) { showToast('⚠️ Entrez votre email'); return; }
+  closeModal('m-login');
+  showPage('dashboard');
+}
+
+// ═══════════════════════════════
+// CHATBOT (FLORA)
+// ═══════════════════════════════
+
+const FLORA_RESPONSES = [
+  {kw:['balcon','appartement'],r:"Pour un balcon, je recommande vivement la formation **Balcon & Appartement** (89€). Tomates cerises, basilic, salades — parfait pour démarrer ! 🌱"},
+  {kw:['terrasse'],r:"La **Terrasse Productive** (119€) est idéale : courgettes, tomates grosses, poivrons. Un vrai potager chez vous ! 🌞"},
+  {kw:['intérieur','interieur','fenêtre','lumière','led'],r:"Sans soleil direct ? La formation **Intérieur & Lumière** (69€) montre comment cultiver avec des LED. Récoltes toute l'année ! 💡"},
+  {kw:['enfant','famille','kids'],r:"Pour jardiner avec vos enfants, **Jardin en Famille** (79€) est parfaite. Radis en 25 jours — les enfants adorent ! 👨‍👩‍👧"},
+  {kw:['hydro','hydroponie','sans terre','eau'],r:"La **Hydroponie Maison** (99€) est fascinante : zéro terre, des laitues en 3 semaines, 90% moins d'eau. 💧"},
+  {kw:['pack','tout','complet'],r:"Le **Pack Complet** à 297€ regroupe les 5 formations + guides PDF + accès à vie. Économie de 348€ vs l'achat séparé ! 🌿"},
+  {kw:['engrais','fertilisant','ortie','purin','café','banane'],r:"Nos 8 recettes d'engrais maison sont 100% gratuites ! Purin d'ortie, marc de café, épluchures de banane… Tout dans la section Engrais. ♻️"},
+  {kw:['prix','coût','cher','remboursement','garantie'],r:"Toutes les formations sont garanties 30 jours satisfait ou remboursé. Paiement sécurisé par Stripe. 🔒"},
+  {kw:['tomate','courgette','poivron','légume','récolte'],r:"Ces légumes sont couverts en détail dans nos formations ! Pour balcon : tomates cerises. Pour terrasse : grosses tomates, courgettes, poivrons. 🍅"},
+  {kw:['region','nord','paris','lyon','marseille','bordeaux','bretagne'],r:"Notre guide saisonnier couvre 6 zones climatiques françaises avec des calendriers de semis précis par région. 📅"},
+];
+
+const FLORA_DEFAULT = [
+  "Belle question ! Pour vous orienter au mieux, dites-moi : avez-vous un balcon, une terrasse, ou ni l'un ni l'autre ? 🌱",
+  "Je peux vous aider à choisir la formation parfaite selon votre espace et vos objectifs. Qu'est-ce que vous aimeriez cultiver en priorité ? 🍅",
+  "Pour démarrer sans expérience, nos formations sont faites pour vous — nos élèves débutants obtiennent leur première récolte en 6 semaines. Voulez-vous en savoir plus ? ✨",
+];
+
+let floraTyping = false;
+
+document.getElementById('chat-toggle').onclick = () => document.getElementById('chat-win').classList.toggle('open');
+
+document.getElementById('chat-form').onsubmit = function(e) {
+  e.preventDefault();
+  if (floraTyping) return;
+  const inp = document.getElementById('chat-in');
+  const val = inp.value.trim();
+  if (!val) return;
+  
+  const msgs = document.getElementById('chat-msgs');
+  const u = document.createElement('div');
+  u.className = 'msg usr'; u.textContent = val;
+  msgs.appendChild(u);
+  inp.value = '';
+  
+  // Typing indicator
+  floraTyping = true;
+  const typing = document.createElement('div');
+  typing.className = 'chat-typing';
+  typing.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+  
+  setTimeout(() => {
+    msgs.removeChild(typing);
+    floraTyping = false;
+    
+    const low = val.toLowerCase();
+    let response = null;
+    for (const r of FLORA_RESPONSES) {
+      if (r.kw.some(k => low.includes(k))) { response = r.r; break; }
+    }
+    if (!response) response = FLORA_DEFAULT[Math.floor(Math.random() * FLORA_DEFAULT.length)];
+    
+    const b = document.createElement('div');
+    b.className = 'msg bot'; b.textContent = response;
+    msgs.appendChild(b);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 900 + Math.random() * 600);
+  
+  msgs.scrollTop = msgs.scrollHeight;
+};
+
+// ═══════════════════════════════
+// INIT
+// ═══════════════════════════════
+
+showPage('home');
+
+// Fix témoignages page après render
+const origShowPage = showPage;
+</script>
+</body>
+</html>
